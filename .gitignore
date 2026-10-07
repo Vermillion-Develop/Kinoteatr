@@ -1,0 +1,14 @@
+appsettings.json
+
+[Bb]in/
+[Oo]bj/
+
+.vs/
+.idea/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+*.log
+.crash/
