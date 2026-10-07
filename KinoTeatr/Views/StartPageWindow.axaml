@@ -16,9 +16,9 @@
         <Grid Grid.Row="0" Background="#0E0B12">
             <StackPanel Orientation="Horizontal">
             <Image Source="/Assets/Images/camera.png" Width="50" Height="50" Margin="15"/>  
-            <TextBlock FontSize="36" VerticalAlignment="Center">
+            <TextBlock FontSize="32" VerticalAlignment="Center">
                 <Run Text="Cinema" Foreground="Orange"/>
-                <Run Text="Studio" Foreground="White"/>
+                <Run Text="Production" Foreground="White"/>
             </TextBlock>
             </StackPanel>
         </Grid>
@@ -27,16 +27,12 @@
             <StackPanel Grid.Row="1" Orientation="Vertical" Grid.Column="1">
                 <TextBox PlaceholderText="Введите почту" Margin="0,5" PlaceholderForeground="White"/>
                 <TextBox PasswordChar="*" PlaceholderText="Введите пароль" Margin="0,5" PlaceholderForeground="White"/>
-                <StackPanel Orientation="Horizontal">
-                    <Button Background="#E59400" Foreground="WhiteSmoke" Content="Войти" Margin="0,5">
-                        <Button.Styles>
-                             <Style Selector=":pointerover /template/ ContentPresenter">
-                                <Setter Property="Background" Value="#A2A2A2"/>
-                                <Setter Property="Foreground" Value="#000000"/>
-                            </Style>
-                        </Button.Styles>
-                    </Button>
-                    <Button Background="#E59400" Foreground="WhiteSmoke" Content="Регистрация" Margin="5,5">
+                <StackPanel Orientation="Horizontal" >
+                    <Button Background="#E59400" Foreground="WhiteSmoke" Margin="0,5" Width="90">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Войти"/>
+                            <Image Width="20" Height="20" Source="/Assets/Images/enter.png" Margin="10,0"/>
+                        </StackPanel>
                         <Button.Styles>
                              <Style Selector=":pointerover /template/ ContentPresenter">
                                 <Setter Property="Background" Value="#A2A2A2"/>

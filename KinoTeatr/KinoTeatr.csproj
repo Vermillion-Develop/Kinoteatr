@@ -30,6 +30,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Views\PrimaryPageWindow.axaml.cs">
+      <DependentUpon>PrimaryPageWindow.axaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\StartPageWindow.axaml.cs">
       <DependentUpon>StartPageWindow.axaml</DependentUpon>
     </Compile>
