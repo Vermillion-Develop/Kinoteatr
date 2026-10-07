@@ -1,6 +1,6 @@
 ﻿namespace KinoTeatr.ViewModels
 {
-    public partial class MainWindowViewModel : ViewModelBase
+    public partial class StartPageViewModel : ViewModelBase
     {
         public string Greeting { get; } = "Welcome to Avalonia!";
     }

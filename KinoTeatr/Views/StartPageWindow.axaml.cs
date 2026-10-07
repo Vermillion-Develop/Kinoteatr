@@ -2,9 +2,9 @@ using Avalonia.Controls;
 
 namespace KinoTeatr.Views
 {
-    public partial class MainWindow : Window
+    public partial class StartPageWindow : Window
     {
-        public MainWindow()
+        public StartPageWindow()
         {
             InitializeComponent();
         }
