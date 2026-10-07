@@ -3,15 +3,14 @@
         xmlns:vm="using:KinoTeatr.ViewModels"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:helpers="clr-namespace:KinoTeatr.ViewModels"
         mc:Ignorable="d" d:DesignWidth="700" d:DesignHeight="450"
-        x:Class="KinoTeatr.Views.PrimaryPageWindow"
-        x:DataType="vm:PrimaryPageViewModel"
+        x:Class="KinoTeatr.Views.StaffPageWindow"
+        x:DataType="vm:StaffPageViewModel"
         Icon="/Assets/avalonia-logo.ico"
         Title="KinoTeatr">
 
     <Design.DataContext>
-        <vm:PrimaryPageViewModel/>
+        <vm:StaffPageViewModel/>
     </Design.DataContext>
     <Grid RowDefinitions="20*, 80*">
         <Grid Grid.Row="0" Background="#0E0B12">
@@ -36,7 +35,7 @@
                             <TextBlock Foreground="Orange" Text="График съемок" VerticalAlignment="Center"/>
                         </StackPanel>
                     </Button>
-                    <Button HorizontalAlignment="Stretch" Background="#1E1C18" Command="{x:Static helpers:PublicViewModelMethods.OpenStaffCommand}" CommandParameter="{Binding $parent[Window]}">
+                    <Button HorizontalAlignment="Stretch" Background="#1E1C18">
                         <StackPanel Orientation="Horizontal">
                             <Image VerticalAlignment="Center" Width="25" Height="25" Source="/Assets/Images/person.png" Margin="0,0,10,0"/>
                             <TextBlock Foreground="Orange" Text="Сотрудники" VerticalAlignment="Center"/>
@@ -89,58 +88,22 @@
             </ComboBox>
         </Grid>
         <Grid Grid.Row="1" Background="#1E1E1E" ColumnDefinitions="50*,50*" RowDefinitions="50*, 50*">
-            <ScrollViewer Grid.Row="0" Grid.Column="0">
-                <Grid>
-                    <ListBox Background="red">
-                        <ListBox.ItemTemplate>
-                            <DataTemplate>
-                                <StackPanel Orientation="Horizontal">
-                                    
-                                </StackPanel>
-                            </DataTemplate>
-                        </ListBox.ItemTemplate>
-                    </ListBox>
-                </Grid>
-            </ScrollViewer>
-            <ScrollViewer Grid.Row="1" Grid.Column="0">
-                <Grid>
-                    <ListBox Background="blue">
-                        <ListBox.ItemTemplate>
-                            <DataTemplate>
-                                <StackPanel Orientation="Horizontal">
-                                    
-                                </StackPanel>
-                            </DataTemplate>
-                        </ListBox.ItemTemplate>
-                    </ListBox>
-                </Grid>
-            </ScrollViewer>
-            <ScrollViewer Grid.Row="0" Grid.Column="1">
-                <Grid>
-                    <ListBox Background="Yellow">
-                        <ListBox.ItemTemplate>
-                            <DataTemplate>
-                                <StackPanel Orientation="Horizontal">
-                                    
-                                </StackPanel>
-                            </DataTemplate>
-                        </ListBox.ItemTemplate>
-                    </ListBox>
-                </Grid>
-            </ScrollViewer>
-            <ScrollViewer Grid.Row="1" Grid.Column="1">
-                <Grid>
-                    <ListBox  Background="White">
-                        <ListBox.ItemTemplate>
-                            <DataTemplate>
-                                <StackPanel Orientation="Horizontal">
-                                    
-                                </StackPanel>
-                            </DataTemplate>
-                        </ListBox.ItemTemplate>
-                    </ListBox>
-                </Grid>
-            </ScrollViewer>
+            <ListBox Grid.ColumnSpan="2" ItemsSource="{Binding GettedStaffs}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding Family}" Margin="10,0"/>
+                            <TextBlock Text="{Binding Name}" Margin="10,0"/>
+                            <TextBlock Text="{Binding Father}" Margin="10,0"/>
+                            <TextBlock Text="{Binding Email}" Margin="10,0"/>
+                            <TextBlock Text="{Binding Phone}" Margin="10,0"/>
+                            <TextBlock Text="{Binding DataLogId}" Margin="10,0"/>
+                            <TextBlock Text="{Binding Stavka}" Margin="10,0"/>
+                            <TextBlock Text="{Binding SpecializationName}" Margin="10,0"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
         </Grid>
     </Grid>
 </Window>
