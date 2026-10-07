@@ -1,3 +1,5 @@
 <Solution>
   <Project Path="KinoTeatr/KinoTeatr.csproj" />
+  <Project Path="KinoTeatrBackground/KinoTeatrBackground.csproj" />
+  <Project Path="KinoTeatrShared/KinoTeatrShared.csproj" />
 </Solution>
