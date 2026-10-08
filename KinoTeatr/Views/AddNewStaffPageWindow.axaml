@@ -1,0 +1,39 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:KinoTeatr.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:helpers="clr-namespace:KinoTeatr.ViewModels"
+        mc:Ignorable="d" d:DesignWidth="600" d:DesignHeight="300"
+        x:Class="KinoTeatr.Views.AddNewStaffPageWindow"
+        x:DataType="vm:AddNewStaffPageViewModel"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="KinoTeatr">
+
+    <Design.DataContext>
+        <vm:AddNewStaffPageViewModel/>
+    </Design.DataContext>
+    <Grid RowDefinitions="15*, 85*" ColumnDefinitions="45*, 5*, 45*" Background="#1E1E1E">
+        <TextBlock Grid.Row="0" VerticalAlignment="Center" Grid.ColumnSpan="3" Text="Добавление сотрудника" Foreground="Orange" FontSize="18" HorizontalAlignment="Center"/>
+        <Image VerticalAlignment="Center" HorizontalAlignment="Left" Source="/Assets/Images/person.png" Width="30" Margin="10,0,0,0"/>
+       <StackPanel Grid.Row="1">
+           <TextBox PlaceholderText="Фамилия" Foreground="Orange" Background="#474444" PlaceholderForeground="White" Margin="0,0,0,10"/>
+           <TextBox PlaceholderText="Имя" Foreground="Orange" Background="#474444" PlaceholderForeground="White" Margin="0,0,0,10"/>
+           <TextBox PlaceholderText="Отчество" Foreground="Orange" Background="#474444" PlaceholderForeground="White" Margin="0,0,0,10"/>
+           <TextBox PlaceholderText="Телефон" Foreground="Orange" Background="#474444" PlaceholderForeground="White" Margin="0,0,0,10"/>
+           <TextBox PlaceholderText="Почта" Foreground="Orange" Background="#474444" PlaceholderForeground="White" Margin="0,0,0,10"/>
+       </StackPanel>
+       <StackPanel Grid.Row="1" Grid.Column="2">
+           <ComboBox Cursor="Hand" ItemsSource="{Binding GettedSpecializations}" SelectedItem="{Binding SelectedSpec, Mode=TwoWay}" DisplayMemberBinding="{Binding Name}" PlaceholderText="Специальность" Foreground="Orange" Background="#474444" PlaceholderForeground="White" Margin="0,0,0,10"/>
+           <TextBox PlaceholderText="Ставка" Foreground="Orange" Background="#474444" PlaceholderForeground="White" Margin="0,0,0,10"/>
+           <TextBox PlaceholderText="Логин" Foreground="Orange" Background="#474444" PlaceholderForeground="White" Margin="0,0,0,10"/>
+           <TextBox PasswordChar="*" PlaceholderText="Пароль" Foreground="Orange" Background="#474444" PlaceholderForeground="White" Margin="0,0,0,10"/>
+           <TextBox PasswordChar="*" PlaceholderText="Подтвердите пароль" Foreground="Orange" Background="#474444" PlaceholderForeground="White" Margin="0,0,0,10"/>
+           <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button Content="Создать" Foreground="White" Background="Orange" Cursor="Hand"/>
+                <Button Content="Назад" Foreground="White" Background="Red" Margin="10,0,0,0" Cursor="Hand"/>
+            </StackPanel>
+       </StackPanel>
+        
+    </Grid>
+</Window>

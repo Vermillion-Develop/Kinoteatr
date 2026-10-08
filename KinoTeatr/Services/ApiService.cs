@@ -58,6 +58,23 @@ namespace CinemaHub.Services
 
         }
 
-
+        public async Task<List<Specialization>> GetSpecializationsAsync() 
+        {
+            try
+            {
+                var response = await _httpClient.GetFromJsonAsync<List<Specialization>>("api/Staff/getRoles");
+                if (response == null)
+                {
+                    Debug.WriteLine("Ошибка при получении специализаций");
+                    return new List<Specialization>();
+                }
+                return response;
+            }
+            catch (Exception ex) 
+            {
+                Debug.WriteLine("Ошибка: " + ex.Message);
+                return new List<Specialization>();
+            }
+        }
     }
 }

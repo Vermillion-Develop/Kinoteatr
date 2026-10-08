@@ -29,10 +29,10 @@
                 <TextBox PasswordChar="*" PlaceholderText="Введите пароль" Margin="0,5" PlaceholderForeground="White" Text="{Binding Password}"/>
                 <TextBlock Text="{Binding ErrorMessage}" HorizontalAlignment="Center" Foreground="Red"/>
                 <StackPanel Orientation="Horizontal" >
-                    <Button Background="#E59400" Foreground="WhiteSmoke" Margin="0,5" Width="90" Command="{Binding LoginInCommand}" CommandParameter="{Binding $parent[Window]}">
+                    <Button Cursor="Hand" Background="#E59400" Foreground="WhiteSmoke" Margin="0,5" Width="90" Command="{Binding LoginInCommand}" CommandParameter="{Binding $parent[Window]}">
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="Войти"/>
-                            <Image Width="20" Height="20" Source="/Assets/Images/enter.png" Margin="10,0"/>
+                            <TextBlock Text="Войти" VerticalAlignment="Center"/>
+                            <Image VerticalAlignment="Center" Width="20" Height="20" Source="/Assets/Images/enter.png"  Margin="5,0"/>
                         </StackPanel>
                         <Button.Styles>
                              <Style Selector=":pointerover /template/ ContentPresenter">

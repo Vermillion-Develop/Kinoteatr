@@ -1,5 +1,8 @@
 ﻿using CinemaHub.Services;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using KinoTeatr.Views;
+using KinoTeatrShared.Models;
 using KinoTeatrShared.ModelsDTO;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
@@ -31,6 +34,19 @@ namespace KinoTeatr.ViewModels
             {
                 GettedStaffs.Add(staff);
             }
+            
         }
+
+        [RelayCommand]
+        public async Task OpenAddStaffForm()
+        {
+            AddNewStaffPageWindow addStaff = new AddNewStaffPageWindow()
+            {
+                DataContext = new AddNewStaffPageViewModel()
+            };
+            addStaff.Show();
+        }
+
+        
     }
 }

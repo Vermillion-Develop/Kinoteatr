@@ -24,49 +24,49 @@
             </StackPanel>
             <ComboBox VerticalAlignment="Center" HorizontalAlignment="Right" Background="Orange" HorizontalContentAlignment="Center" Width="150" FontSize=" 16" PlaceholderText="Меню">
                 <ComboBox.Items>
-                    <Button HorizontalAlignment="Stretch" Background="#1E1C18">
+                    <Button Cursor="Hand" HorizontalAlignment="Stretch" Background="#1E1C18">
                         <StackPanel Orientation="Horizontal">
                             <Image VerticalAlignment="Center" Width="25" Height="25" Source="/Assets/Images/group.png" Margin="0,0,10,0"/>
                             <TextBlock Foreground="Orange" Text="Съемочная группа" VerticalAlignment="Center"/>
                         </StackPanel>
                     </Button>
-                    <Button HorizontalAlignment="Stretch" Background="#1E1C18">
+                    <Button Cursor="Hand" HorizontalAlignment="Stretch" Background="#1E1C18">
                         <StackPanel Orientation="Horizontal">
                             <Image VerticalAlignment="Center" Width="25" Height="25" Source="/Assets/Images/graphic.png" Margin="0,0,10,0"/>
                             <TextBlock Foreground="Orange" Text="График съемок" VerticalAlignment="Center"/>
                         </StackPanel>
                     </Button>
-                    <Button HorizontalAlignment="Stretch" Background="#1E1C18" Command="{x:Static helpers:PublicViewModelMethods.OpenStaffCommand}" CommandParameter="{Binding $parent[Window]}">
+                    <Button Cursor="Hand" HorizontalAlignment="Stretch" Background="#1E1C18" Command="{x:Static helpers:PublicViewModelMethods.OpenStaffCommand}" CommandParameter="{Binding $parent[Window]}">
                         <StackPanel Orientation="Horizontal">
                             <Image VerticalAlignment="Center" Width="25" Height="25" Source="/Assets/Images/person.png" Margin="0,0,10,0"/>
                             <TextBlock Foreground="Orange" Text="Сотрудники" VerticalAlignment="Center"/>
                         </StackPanel>
                     </Button>
-                    <Button HorizontalAlignment="Stretch" Background="#1E1C18">
+                    <Button Cursor="Hand" HorizontalAlignment="Stretch" Background="#1E1C18">
                         <StackPanel Orientation="Horizontal">
                             <Image VerticalAlignment="Center" Width="25" Height="25" Source="/Assets/Images/gps.png" Margin="0,0,10,0"/>
                             <TextBlock Foreground="Orange" Text="Площадки" VerticalAlignment="Center"/>
                         </StackPanel>
                     </Button>
-                    <Button HorizontalAlignment="Stretch" Background="#1E1C18">
+                    <Button Cursor="Hand" HorizontalAlignment="Stretch" Background="#1E1C18">
                         <StackPanel Orientation="Horizontal">
                             <Image VerticalAlignment="Center" Width="25" Height="25" Source="/Assets/Images/projects.png" Margin="0,0,10,0"/>
                             <TextBlock Foreground="Orange" Text="Проекты" VerticalAlignment="Center"/>
                         </StackPanel>
                     </Button>
-                    <Button HorizontalAlignment="Stretch" Background="#1E1C18">
+                    <Button Cursor="Hand" HorizontalAlignment="Stretch" Background="#1E1C18">
                         <StackPanel Orientation="Horizontal">
                             <Image VerticalAlignment="Center" Width="25" Height="25" Source="/Assets/Images/payment.png" Margin="0,0,10,0"/>
                             <TextBlock Foreground="Orange" Text="Затраты" VerticalAlignment="Center"/>
                         </StackPanel>
                     </Button>
-                    <Button HorizontalAlignment="Stretch" Background="#1E1C18">
+                    <Button Cursor="Hand" HorizontalAlignment="Stretch" Background="#1E1C18">
                         <StackPanel Orientation="Horizontal">
                             <Image VerticalAlignment="Center" Width="25" Height="25" Source="/Assets/Images/procat.png" Margin="0,0,10,0"/>
                             <TextBlock Foreground="Orange" Text="Прокат" VerticalAlignment="Center"/>
                         </StackPanel>
                     </Button>
-                    <Button HorizontalAlignment="Stretch" Background="Red" Command="{x:Static helpers:PublicViewModelMethods.LeaveFromSessionCommand}" CommandParameter="{Binding $parent[Window]}">
+                    <Button Cursor="Hand" HorizontalAlignment="Stretch" Background="Red" Command="{x:Static helpers:PublicViewModelMethods.LeaveFromSessionCommand}" CommandParameter="{Binding $parent[Window]}">
                         <StackPanel Orientation="Horizontal">
                             <Image VerticalAlignment="Center" Width="25" Height="25" Source="/Assets/Images/enter.png" Margin="0,0,10,0"/>
                             <TextBlock Foreground="White" Text="Выход" VerticalAlignment="Center"/>

@@ -80,5 +80,12 @@ namespace KinoTeatrBackground.Controllers
                 return Ok(staff);
             }
         }
+
+        [HttpGet("getRoles")]
+        public async Task<ActionResult<IEnumerable<Specialization>>> GetSpecializations()
+        {
+            var roleList = await (from r in _context.Specializations select r).ToListAsync();
+            return Ok(roleList);
+        }
     }
 }

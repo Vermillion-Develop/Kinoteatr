@@ -12,5 +12,6 @@ namespace CinemaHub.Services
         Task<List<StaffDTO>> GetStaffAsync();
 
         Task<StaffDTO?> LoginIn(string? login, string? password);
+        Task<List<Specialization>> GetSpecializationsAsync();
     }
 }
