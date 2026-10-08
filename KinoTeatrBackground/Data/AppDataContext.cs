@@ -16,6 +16,7 @@ namespace KinoTeatrBackground.Data
         }
         public DbSet<Staff> Staffs { get; set; }
         public DbSet<Specialization> Specializations { get; set; }
+        public DbSet<DataLog> DataLogs { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
 
@@ -23,6 +24,7 @@ namespace KinoTeatrBackground.Data
 
             modelBuilder.Entity<Staff>().ToTable("Staff");
             modelBuilder.Entity<Specialization>().ToTable("Specialization");
+            modelBuilder.Entity<DataLog>().ToTable("DataLog");
 
         }
     }

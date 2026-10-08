@@ -20,9 +20,9 @@ namespace KinoTeatr
         {
             if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
             {
-                desktop.MainWindow = new PrimaryPageWindow
+                desktop.MainWindow = new StartPageWindow
                 {
-                    DataContext = new PrimaryPageViewModel(),
+                    DataContext = new StartPageViewModel(),
                 };
             }
 

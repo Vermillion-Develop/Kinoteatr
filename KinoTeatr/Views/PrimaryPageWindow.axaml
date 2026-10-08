@@ -66,7 +66,7 @@
                             <TextBlock Foreground="Orange" Text="Прокат" VerticalAlignment="Center"/>
                         </StackPanel>
                     </Button>
-                    <Button HorizontalAlignment="Stretch" Background="Red">
+                    <Button HorizontalAlignment="Stretch" Background="Red" Command="{x:Static helpers:PublicViewModelMethods.LeaveFromSessionCommand}" CommandParameter="{Binding $parent[Window]}">
                         <StackPanel Orientation="Horizontal">
                             <Image VerticalAlignment="Center" Width="25" Height="25" Source="/Assets/Images/enter.png" Margin="0,0,10,0"/>
                             <TextBlock Foreground="White" Text="Выход" VerticalAlignment="Center"/>

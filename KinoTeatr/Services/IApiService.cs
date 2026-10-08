@@ -10,5 +10,7 @@ namespace CinemaHub.Services
     public interface IApiService
     {
         Task<List<StaffDTO>> GetStaffAsync();
+
+        Task<StaffDTO?> LoginIn(string? login, string? password);
     }
 }

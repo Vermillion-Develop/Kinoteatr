@@ -38,6 +38,26 @@ namespace CinemaHub.Services
             }
         }
 
+        public async Task<StaffDTO?> LoginIn(string? login, string? password)
+        {
+            try
+            {
+                NewLoginRequest dataRequest = new NewLoginRequest() { Login = login, Password = password };
+                var response = await _httpClient.PostAsJsonAsync("api/Staff/loginStaff", dataRequest);
+                if (response.IsSuccessStatusCode)
+                {
+                    return await response.Content.ReadFromJsonAsync<StaffDTO>();
+                }
+                return null;
+            }
+            catch (Exception ex) 
+            {
+                Debug.WriteLine($"Ошибка: {ex.Message}");
+                return null;
+            }
+
+        }
+
 
     }
 }

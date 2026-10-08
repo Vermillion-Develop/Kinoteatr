@@ -25,10 +25,11 @@
         <Grid Grid.Row="1" Background="#1E1E1E" ColumnDefinitions="25*,50*,25*" RowDefinitions="35*, 65*">
             <TextBlock Grid.Column="1" Foreground="#E59400" VerticalAlignment="Center" Text="Вход в систему" HorizontalAlignment="Center" Grid.Row="0" FontSize="32"/>
             <StackPanel Grid.Row="1" Orientation="Vertical" Grid.Column="1">
-                <TextBox PlaceholderText="Введите почту" Margin="0,5" PlaceholderForeground="White"/>
-                <TextBox PasswordChar="*" PlaceholderText="Введите пароль" Margin="0,5" PlaceholderForeground="White"/>
+                <TextBox PlaceholderText="Введите почту" Margin="0,5" PlaceholderForeground="White" Text="{Binding Login}"/>
+                <TextBox PasswordChar="*" PlaceholderText="Введите пароль" Margin="0,5" PlaceholderForeground="White" Text="{Binding Password}"/>
+                <TextBlock Text="{Binding ErrorMessage}" HorizontalAlignment="Center" Foreground="Red"/>
                 <StackPanel Orientation="Horizontal" >
-                    <Button Background="#E59400" Foreground="WhiteSmoke" Margin="0,5" Width="90">
+                    <Button Background="#E59400" Foreground="WhiteSmoke" Margin="0,5" Width="90" Command="{Binding LoginInCommand}" CommandParameter="{Binding $parent[Window]}">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="Войти"/>
                             <Image Width="20" Height="20" Source="/Assets/Images/enter.png" Margin="10,0"/>

@@ -38,7 +38,7 @@
                     <Button HorizontalAlignment="Stretch" Background="#1E1C18">
                         <StackPanel Orientation="Horizontal">
                             <Image VerticalAlignment="Center" Width="25" Height="25" Source="/Assets/Images/person.png" Margin="0,0,10,0"/>
-                            <TextBlock Foreground="Orange" Text="Сотрудники" VerticalAlignment="Center"/>
+                            <TextBlock Foreground="White" IsEnabled="False" Text="Сотрудники" VerticalAlignment="Center"/>
                         </StackPanel>
                     </Button>
                     <Button HorizontalAlignment="Stretch" Background="#1E1C18">
@@ -88,19 +88,21 @@
             </ComboBox>
         </Grid>
         <Grid Grid.Row="1" Background="#1E1E1E" ColumnDefinitions="50*,50*" RowDefinitions="50*, 50*">
-            <ListBox Grid.ColumnSpan="2" ItemsSource="{Binding GettedStaffs}">
+            <ListBox Grid.ColumnSpan="2" ItemsSource="{Binding GettedStaffs}" Background="#1E1E1E">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="{Binding Family}" Margin="10,0"/>
-                            <TextBlock Text="{Binding Name}" Margin="10,0"/>
-                            <TextBlock Text="{Binding Father}" Margin="10,0"/>
-                            <TextBlock Text="{Binding Email}" Margin="10,0"/>
-                            <TextBlock Text="{Binding Phone}" Margin="10,0"/>
-                            <TextBlock Text="{Binding DataLogId}" Margin="10,0"/>
-                            <TextBlock Text="{Binding Stavka}" Margin="10,0"/>
-                            <TextBlock Text="{Binding SpecializationName}" Margin="10,0"/>
-                        </StackPanel>
+                        <Border BorderBrush="Orange" BorderThickness="1" CornerRadius="5" Padding="0,20">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding Family}" Margin="10,0" Foreground="White"/>
+                                    <TextBlock Text="{Binding Name}" Margin="10,0" Foreground="White"/>
+                                    <TextBlock Text="{Binding Father}" Margin="10,0" Foreground="White"/>
+                                    <TextBlock Text="{Binding Email}" Margin="10,0" Foreground="White"/>
+                                    <TextBlock Text="{Binding Phone}" Margin="10,0" Foreground="White"/>
+                                    <TextBlock Text="{Binding DataLogId}" Margin="10,0" Foreground="White"/>
+                                    <TextBlock Text="{Binding Stavka}" Margin="10,0" Foreground="White"/>
+                                    <TextBlock Text="{Binding SpecializationName}" Margin="10,0" Foreground="White"/>
+                                </StackPanel>
+                            </Border>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
