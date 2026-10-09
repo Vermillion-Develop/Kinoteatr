@@ -15,5 +15,6 @@ namespace KinoTeatrShared.Models
         public string? Email { get; set; }
         public decimal? Stavka { get; set; }
         public string? DataLogId { get; set; }
+        public bool? Status { get; set; }
     }
 }

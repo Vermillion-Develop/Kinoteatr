@@ -71,7 +71,7 @@ namespace KinoTeatr.ViewModels
                 ErrorMessage = "Пароли не совпадают";
                 return;
             }
-            var result = await _apiService.RegisterStaff(Family, Name, Father, SelectedSpec?.Id, Phone, Email, Stavka, Datalog, Password);
+            var result = await _apiService.RegisterStaffAsync(Family, Name, Father, SelectedSpec?.Id, Phone, Email, Stavka, Datalog, Password);
             if(result == true)
             {
                 currentWindow?.Close(true);

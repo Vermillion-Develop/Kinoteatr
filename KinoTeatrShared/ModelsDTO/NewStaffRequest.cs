@@ -6,6 +6,7 @@ namespace KinoTeatrShared.ModelsDTO
 {
     public class NewStaffRequest
     {
+        public int? Id { get; set; }
         public string? Family { get; set; }
         public string? Name { get; set; }
         public string? Father { get; set; }
@@ -14,6 +15,7 @@ namespace KinoTeatrShared.ModelsDTO
         public string? Email { get; set; }
         public decimal? Stavka { get; set; }
         public string? DataLogId { get; set; }
+        public string? NewDataLogId { get; set; }
         public string? Password { get; set; }
 
     }

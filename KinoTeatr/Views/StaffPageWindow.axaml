@@ -89,7 +89,7 @@
             </ComboBox>
         </Grid>
         <Grid Grid.Row="1" Background="#1E1E1E" ColumnDefinitions="50*,50*" RowDefinitions="50*, 50*">
-            <Grid RowDefinitions="50 50*" Grid.ColumnSpan="3">
+            <Grid RowDefinitions="20* 80*" Grid.RowSpan="2" Grid.ColumnSpan="3">
                 <StackPanel Grid.Row="0"  Orientation="Horizontal" >
                     <Button Cursor="Hand" Content="Добавить" Foreground="White" Background="#17A117" VerticalAlignment="Center" Margin="10,0,10,0" Command="{Binding OpenAddStaffFormCommand}" CommandParameter="{Binding $parent[Window]}">
                         <Button.Styles>
@@ -98,21 +98,21 @@
                             </Style>
                         </Button.Styles>
                     </Button>
-                    <Button Cursor="Hand" Content="Редактировать" Foreground="White" Background="Orange" VerticalAlignment="Center" Margin="0,0,10,0" Command="{Binding OpenUpdateStaffForm}" CommandParameter="{Binding $parent[Window]}">
+                    <Button Cursor="Hand" Content="Редактировать" Foreground="White" Background="Orange" VerticalAlignment="Center" Margin="0,0,10,0" Command="{Binding OpenUpdateStaffFormCommand}" CommandParameter="{Binding $parent[Window]}">
                         <Button.Styles>
                             <Style Selector=":pointerover /template/ ContentPresenter">
                                 <Setter Property="Background" Value="#FFC457"/>
                             </Style>
                         </Button.Styles>
                     </Button>
-                    <Button Cursor="Hand" Content="Удалить" Foreground="White" Background="Red" VerticalAlignment="Center" Margin="0,0,10,0">
+                    <Button Cursor="Hand" Content="Удалить" Foreground="White" Background="Red" VerticalAlignment="Center" Margin="0,0,10,0" Command="{Binding DeleteSelectedStaffCommand}">
                         <Button.Styles>
                             <Style Selector=":pointerover /template/ ContentPresenter">
                                 <Setter Property="Background" Value="#FF5757"/>
                             </Style>
                         </Button.Styles>
                     </Button>
-                    <TextBox VerticalAlignment="Center" Margin="0,0,10,0" PlaceholderText="Поиск сотрудников" PlaceholderForeground="White" Background="#474444" Foreground="Orange" MaxWidth="200" HorizontalContentAlignment="Center"/>
+                    <TextBox VerticalAlignment="Center" Margin="0,0,10,0" Text="{Binding SearchStroke, Mode=TwoWay}" PlaceholderText="Поиск сотрудников" PlaceholderForeground="White" Background="#474444" Foreground="Orange" MaxWidth="200" HorizontalContentAlignment="Center"/>
                 </StackPanel>
                 <ListBox Grid.Row="1" Grid.ColumnSpan="2" ItemsSource="{Binding GettedStaffs}" SelectedItem="{Binding SelectedStaff, Mode=TwoWay}" Background="#1E1E1E">
                     <ListBox.ItemTemplate>

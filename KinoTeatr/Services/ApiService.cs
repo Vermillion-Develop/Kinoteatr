@@ -38,7 +38,7 @@ namespace CinemaHub.Services
             }
         }
 
-        public async Task<StaffDTO?> LoginIn(string? login, string? password)
+        public async Task<StaffDTO?> LoginInAsync(string? login, string? password)
         {
             try
             {
@@ -77,7 +77,7 @@ namespace CinemaHub.Services
             }
         }
 
-        public async Task<bool> RegisterStaff(string? family, string? name, string? father, int? role, string? phone, string? email, decimal? stavka, string? datalog, string? password)
+        public async Task<bool> RegisterStaffAsync(string? family, string? name, string? father, int? role, string? phone, string? email, decimal? stavka, string? datalog, string? password)
         {
             try
             {
@@ -90,7 +90,35 @@ namespace CinemaHub.Services
                 Debug.WriteLine("Ошибка при регистрации сотрудника");
                 return false;
             }
-            
+        }
+
+        public async Task<bool> UpdateStaffAsync(string? family, string? name, string? father, int? role, string? phone, string? email, decimal? stavka, string? datalog, string? password, int? userId, string? newDatalog)
+        {
+            try
+            {
+                NewStaffRequest dataStaff = new NewStaffRequest() { Family = family, Name = name, Father = father, SpecializationId = role, Phone = phone, Email = email, Stavka = stavka, DataLogId = datalog, Password = password, Id = userId, NewDataLogId = newDatalog };
+                var response = await _httpClient.PostAsJsonAsync("api/Staff/updateStaff", dataStaff);
+                return response.IsSuccessStatusCode;
+            }
+            catch (Exception ex) 
+            {
+                Debug.WriteLine("Ошибка при редактировании сотрудника");//
+                return false;
+            }
+        }
+        
+        public async Task<bool> DeleteStaffAsync(int? staffId)
+        {
+            try
+            {
+                var response = await _httpClient.PostAsJsonAsync("api/Staff/deleteStaff", staffId);
+                return response.IsSuccessStatusCode;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("Ошибка при удалении сотрудника" + ex.Message);//
+                return false;
+            }
         }
     }
 }

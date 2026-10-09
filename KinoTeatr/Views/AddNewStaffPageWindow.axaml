@@ -32,7 +32,7 @@
            <TextBox PasswordChar="*" PlaceholderText="Подтвердите пароль" Foreground="Orange" Background="#474444" PlaceholderForeground="White" Margin="0,0,0,10" Text="{Binding SecondPassword}"/>
            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                 <Button Content="Создать" Command="{Binding RegisterStaffCommand}" CommandParameter="{Binding $parent[Window]}" Foreground="White" Background="Orange" Cursor="Hand"/>
-                <Button Content="Назад" Foreground="White" Background="Red" Margin="10,0,0,0" Cursor="Hand"/>
+                <Button Content="Назад" Foreground="White" Background="Red" Margin="10,0,0,0" Cursor="Hand" Command="{x:Static helpers:PublicViewModelMethods.CloseCurrentWindowCommand}" CommandParameter="{Binding $parent[Window]}"/>
             </StackPanel>
        </StackPanel>
         

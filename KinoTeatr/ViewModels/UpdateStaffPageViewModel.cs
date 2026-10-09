@@ -76,7 +76,8 @@ namespace KinoTeatr.ViewModels
                 ErrorMessage = "Пароли не совпадают";
                 return;
             }
-            var result = await _apiService.RegisterStaff(Family, Name, Father, SelectedSpec?.Id, Phone, Email, Stavka, Datalog, Password);
+            Debug.WriteLine("ЕБАНЫЙ ПЕЛЬМЕНЬ " + Datalog);
+            var result = await _apiService.UpdateStaffAsync(Family, Name, Father, SelectedSpec?.Id, Phone, Email, Stavka, SelectedStaff?.DataLogId, Password, SelectedStaff?.Id,  Datalog);
             if(result == true)
             {
                 currentWindow?.Close(true);
@@ -84,7 +85,7 @@ namespace KinoTeatr.ViewModels
                 return;
             }
 
-            ErrorMessage = "Ошибка при добавлении сотрудника";
+            ErrorMessage = "Ошибка при редактировании сотрудника";
             Debug.WriteLine(ErrorMessage);
             return;
         }

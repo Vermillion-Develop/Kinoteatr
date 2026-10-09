@@ -11,8 +11,11 @@ namespace CinemaHub.Services
     {
         Task<List<StaffDTO>> GetStaffAsync();
 
-        Task<StaffDTO?> LoginIn(string? login, string? password);
+        Task<StaffDTO?> LoginInAsync(string? login, string? password);
         Task<List<Specialization>> GetSpecializationsAsync();
-        Task<bool> RegisterStaff(string? family, string? name, string? father, int? role, string? phone, string? email, decimal? stavka, string? datalog, string? password);
+        Task<bool> RegisterStaffAsync(string? family, string? name, string? father, int? role, string? phone, string? email, decimal? stavka, string? datalog, string? password);
+        Task<bool> UpdateStaffAsync(string? family, string? name, string? father, int? role, string? phone, string? email, decimal? stavka, string? datalog, string? password, int? userId, string? newDatalog);
+
+        Task<bool> DeleteStaffAsync(int? staffId);
     }
 }

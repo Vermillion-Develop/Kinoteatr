@@ -15,9 +15,13 @@ namespace KinoTeatr.ViewModels
     {
         private readonly IApiService _apiService;
         public ObservableCollection<StaffDTO> GettedStaffs { get; } = new ObservableCollection<StaffDTO>();
+        public ObservableCollection<StaffDTO> DefaultStaffs { get; } = new ObservableCollection<StaffDTO>();
 
         [ObservableProperty]
         public StaffDTO? _selectedStaff;
+
+        [ObservableProperty]
+        public string? _searchStroke;
         public StaffPageViewModel()
         {
             _apiService = new ApiService();
@@ -34,15 +38,17 @@ namespace KinoTeatr.ViewModels
             }
 
             GettedStaffs.Clear();
+            DefaultStaffs.Clear();
             foreach (var staff in result) 
             {
                 GettedStaffs.Add(staff);
+                DefaultStaffs.Add(staff);
             }
             
         }
 
         [RelayCommand]
-        public async Task OpenAddStaffForm(Window? currentWindow)
+        public async Task OpenAddStaffFormAsync(Window? currentWindow) //Открыть форму добавления сотрудника
         {
             
             AddNewStaffPageWindow addStaff = new AddNewStaffPageWindow()
@@ -61,7 +67,7 @@ namespace KinoTeatr.ViewModels
         }
 
         [RelayCommand]
-        public async Task OpenUpdateStaffForm(Window? currentWindow) 
+        public async Task OpenUpdateStaffFormAsync(Window? currentWindow)  // Открыть форму обновления сотрудника
         {
             UpdateStaffPageWindow updateStaff = new UpdateStaffPageWindow()
             {
@@ -78,6 +84,40 @@ namespace KinoTeatr.ViewModels
                 if (dialogres)
                 {
                     await GetStaffAsync();
+                }
+            }
+        }
+
+        [RelayCommand]
+        public async Task DeleteSelectedStaffAsync()
+        {
+            var result = await _apiService.DeleteStaffAsync(SelectedStaff?.Id);
+            Debug.WriteLine(SelectedStaff?.Id);
+            if (result)
+            {
+                Debug.WriteLine("Сотрудник удален");
+                _ = GetStaffAsync();
+            }
+            else
+            {
+                Debug.WriteLine("Ошибка удаления сотрудника");
+            }
+        }
+
+        partial void OnSearchStrokeChanged(string? value) // Метод поиска
+        {
+            GettedStaffs.Clear();
+            foreach (var filtredStaff in DefaultStaffs)
+            {
+                if (filtredStaff.Family.ToLower().StartsWith(value.ToLower()) ||
+                    filtredStaff.Name.ToLower().StartsWith(value.ToLower()) ||
+                    filtredStaff.Father.ToLower().StartsWith(value.ToLower()))
+                {
+                    GettedStaffs.Add(filtredStaff);
+                }
+                else if (string.IsNullOrWhiteSpace(value))
+                {
+                    GettedStaffs.Add(filtredStaff);
                 }
             }
         }

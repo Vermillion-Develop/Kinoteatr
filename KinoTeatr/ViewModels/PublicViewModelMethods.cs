@@ -16,6 +16,7 @@ namespace KinoTeatr.ViewModels
 
         public static ICommand OpenStaffCommand { get; } = new AsyncRelayCommand<Window>(OpenStaff);
         public static ICommand LeaveFromSessionCommand { get; } = new AsyncRelayCommand<Window>(LeaveFromSession);
+        public static ICommand CloseCurrentWindowCommand { get; } = new AsyncRelayCommand<Window>(CloseCurrentWindow);
   
 
         public static async Task OpenStaff(Window? currentWindow)
@@ -37,6 +38,11 @@ namespace KinoTeatr.ViewModels
             UserSession.CurrentStaff = null;
             startPage.Show();
             currentWindow?.Hide();
+        }
+
+        public static async Task CloseCurrentWindow(Window? currentWindow)
+        {
+            currentWindow?.Close();
         }
     }
 }

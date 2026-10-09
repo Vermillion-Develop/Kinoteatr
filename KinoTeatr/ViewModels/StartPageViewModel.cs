@@ -34,7 +34,7 @@ namespace KinoTeatr.ViewModels
                 return;
             }
 
-            StaffDTO? user = await _apiService.LoginIn(Login, Password);
+            StaffDTO? user = await _apiService.LoginInAsync(Login, Password);
             if(user != null)
             {
                 UserSession.CurrentStaff = user;

@@ -15,7 +15,9 @@ namespace KinoTeatrShared.ModelsDTO
         public string? Email { get; set; }
         public decimal? Stavka { get; set; }
         public string? DataLogId { get; set; }
+        public bool? Status { get; set; }
 
         public string? SpecializationName { get; set; }
+        public string? HashedPassword { get; set; }
     }
 }

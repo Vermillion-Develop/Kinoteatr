@@ -31,8 +31,20 @@
            <TextBox PasswordChar="*" PlaceholderText="Пароль" Foreground="Orange" Background="#474444" PlaceholderForeground="White" Margin="0,0,0,10" Text="{Binding Password}"/>
            <TextBox PasswordChar="*" PlaceholderText="Подтвердите пароль" Foreground="Orange" Background="#474444" PlaceholderForeground="White" Margin="0,0,0,10" Text="{Binding SecondPassword}"/>
            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                <Button Content="Сохранить" Command="{Binding UpdateStaffCommand}" CommandParameter="{Binding $parent[Window]}" Foreground="White" Background="Orange" Cursor="Hand"/>
-                <Button Content="Назад" Foreground="White" Background="Red" Margin="10,0,0,0" Cursor="Hand"/>
+                <Button Content="Сохранить" Command="{Binding UpdateStaffCommand}" CommandParameter="{Binding $parent[Window]}" Foreground="White" Background="Orange" Cursor="Hand">
+                    <Button.Styles>
+                        <Style Selector=":pointerover /template/ ContentPresenter">
+                            <Setter Property="Background" Value="#FFC457"/>
+                        </Style>
+                    </Button.Styles>
+                </Button>
+                <Button Content="Назад" Foreground="White" Background="Red" Margin="10,0,0,0" Cursor="Hand" Command="{x:Static helpers:PublicViewModelMethods.CloseCurrentWindowCommand}" CommandParameter="{Binding $parent[Window]}">
+                    <Button.Styles>
+                        <Style Selector=":pointerover /template/ ContentPresenter">
+                            <Setter Property="Background" Value="#FF3E3E"/>
+                        </Style>
+                    </Button.Styles>
+                </Button>
             </StackPanel>
        </StackPanel>
         
