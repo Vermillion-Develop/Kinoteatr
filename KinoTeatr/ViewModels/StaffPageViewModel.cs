@@ -1,4 +1,5 @@
-﻿using CinemaHub.Services;
+﻿using Avalonia.Controls;
+using CinemaHub.Services;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using KinoTeatr.Views;
@@ -14,6 +15,9 @@ namespace KinoTeatr.ViewModels
     {
         private readonly IApiService _apiService;
         public ObservableCollection<StaffDTO> GettedStaffs { get; } = new ObservableCollection<StaffDTO>();
+
+        [ObservableProperty]
+        public StaffDTO? _selectedStaff;
         public StaffPageViewModel()
         {
             _apiService = new ApiService();
@@ -38,15 +42,44 @@ namespace KinoTeatr.ViewModels
         }
 
         [RelayCommand]
-        public async Task OpenAddStaffForm()
+        public async Task OpenAddStaffForm(Window? currentWindow)
         {
+            
             AddNewStaffPageWindow addStaff = new AddNewStaffPageWindow()
             {
                 DataContext = new AddNewStaffPageViewModel()
             };
-            addStaff.Show();
+
+            if(currentWindow != null)
+            {
+                bool dialogres = await addStaff.ShowDialog<bool>(currentWindow);
+                if (dialogres)
+                {
+                    await GetStaffAsync();
+                }
+            }
         }
 
-        
+        [RelayCommand]
+        public async Task OpenUpdateStaffForm(Window? currentWindow) 
+        {
+            UpdateStaffPageWindow updateStaff = new UpdateStaffPageWindow()
+            {
+                DataContext = new UpdateStaffPageViewModel(SelectedStaff)
+            };
+            if(SelectedStaff == null)
+            {
+                Debug.WriteLine("Выберите сотрудника для изменения");
+                return;
+            }
+            if (currentWindow != null)
+            {
+                bool dialogres = await updateStaff.ShowDialog<bool>(currentWindow);
+                if (dialogres)
+                {
+                    await GetStaffAsync();
+                }
+            }
+        }
     }
 }

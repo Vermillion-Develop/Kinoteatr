@@ -3,17 +3,21 @@ using CinemaHub.Services;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using KinoTeatrShared.Models;
+using KinoTeatrShared.ModelsDTO;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Threading.Tasks;
 
 namespace KinoTeatr.ViewModels
 {
-    public partial class AddNewStaffPageViewModel : ViewModelBase
+    public partial class UpdateStaffPageViewModel : ViewModelBase
     {
 
         private readonly IApiService _apiService;
         public ObservableCollection<Specialization> GettedSpecializations { get; } = new ObservableCollection<Specialization>();
+
+        [ObservableProperty]
+        public StaffDTO? selectedStaff;
 
         [ObservableProperty]
         public Specialization? _selectedSpec;
@@ -38,9 +42,10 @@ namespace KinoTeatr.ViewModels
         [ObservableProperty]
         public string? _errorMessage = null;
 
-        public AddNewStaffPageViewModel()
+        public UpdateStaffPageViewModel(StaffDTO? selectedStaff)
         {
             _apiService = new ApiService();
+            SelectedStaff = selectedStaff;
             _ = GetRoleAsync();
         }
         public async Task GetRoleAsync()
@@ -59,7 +64,7 @@ namespace KinoTeatr.ViewModels
         }
 
         [RelayCommand]
-        public async Task RegisterStaff(Window? currentWindow)
+        public async Task UpdateStaff(Window? currentWindow)
         {
             if (string.IsNullOrWhiteSpace(Family) || string.IsNullOrWhiteSpace(Name) || string.IsNullOrWhiteSpace(Phone) || string.IsNullOrWhiteSpace(Email) || Stavka == null || string.IsNullOrWhiteSpace(Datalog) || string.IsNullOrWhiteSpace(Password)) 
             {

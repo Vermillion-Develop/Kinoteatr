@@ -87,5 +87,51 @@ namespace KinoTeatrBackground.Controllers
             var roleList = await (from r in _context.Specializations select r).ToListAsync();
             return Ok(roleList);
         }
+
+        [HttpPost("newStaff")]
+        public async Task<IActionResult> RegisterStaff([FromBody] NewStaffRequest request)
+        {
+            var existingLogin = await _context.DataLogs.FirstOrDefaultAsync(l => l.DataLogId == request.DataLogId);
+
+            if (existingLogin != null)
+            {
+                return BadRequest(new { message = "Пользователь с таким email уже существует!" });
+            }
+
+            using var transaction = await _context.Database.BeginTransactionAsync();
+            try
+            {
+                var newLogin = new DataLog
+                {
+                    DataLogId = request.DataLogId,
+                    Password = request.Password
+                };
+                _context.DataLogs.Add(newLogin);
+                await _context.SaveChangesAsync();
+
+                var newUser = new Staff
+                {
+                    Family = request.Family,
+                    Name = request.Name,
+                    Father = request.Father,
+                    SpecializationId = request.SpecializationId,
+                    Phone = request.Phone,
+                    Email = request.Email,
+                    Stavka = request.Stavka,
+                    DataLogId = newLogin.DataLogId
+                };
+                _context.Staffs.Add(newUser);
+                await _context.SaveChangesAsync();
+
+                await transaction.CommitAsync();
+
+                return Ok(new { message = "Успешная регистрация сотрудника!" });
+            }
+            catch (Exception ex)
+            {
+                await transaction.RollbackAsync();
+                return StatusCode(500, new { message = $"Ошибка на сервере: {ex.Message}" });
+            }
+        }
     }
 }

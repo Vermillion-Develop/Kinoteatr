@@ -5,33 +5,33 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:helpers="clr-namespace:KinoTeatr.ViewModels"
         mc:Ignorable="d" d:DesignWidth="600" d:DesignHeight="300"
-        x:Class="KinoTeatr.Views.AddNewStaffPageWindow"
-        x:DataType="vm:AddNewStaffPageViewModel"
+        x:Class="KinoTeatr.Views.UpdateStaffPageWindow"
+        x:DataType="vm:UpdateStaffPageViewModel"
         Icon="/Assets/avalonia-logo.ico"
         Title="KinoTeatr">
 
-    <Design.DataContext>
-        <vm:AddNewStaffPageViewModel/>
-    </Design.DataContext>
+    <!-- <Design.DataContext>
+        <vm:UpdateStaffPageViewModel/>
+    </Design.DataContext> -->
     <Grid RowDefinitions="15*, 85*" ColumnDefinitions="45*, 5*, 45*" Background="#1E1E1E">
-        <TextBlock Grid.Row="0" VerticalAlignment="Center" Grid.ColumnSpan="3" Text="Добавление сотрудника" Foreground="Orange" FontSize="18" HorizontalAlignment="Center"/>
+        <TextBlock Grid.Row="0" VerticalAlignment="Center" Grid.ColumnSpan="3" Text="Редактирование сотрудника" Foreground="Orange" FontSize="18" HorizontalAlignment="Center"/>
         <Image VerticalAlignment="Center" HorizontalAlignment="Left" Source="/Assets/Images/person.png" Width="30" Margin="10,0,0,0"/>
        <StackPanel Grid.Row="1">
-           <TextBox PlaceholderText="Фамилия" Text="{Binding Family}" Foreground="Orange" Background="#474444" PlaceholderForeground="White" Margin="0,0,0,10"/>
-           <TextBox PlaceholderText="Имя" Text="{Binding Name}" Foreground="Orange" Background="#474444" PlaceholderForeground="White" Margin="0,0,0,10"/>
-           <TextBox PlaceholderText="Отчество" Text="{Binding Father}" Foreground="Orange" Background="#474444" PlaceholderForeground="White" Margin="0,0,0,10"/>
-           <TextBox PlaceholderText="Телефон" Text="{Binding Phone}" Foreground="Orange" Background="#474444" PlaceholderForeground="White" Margin="0,0,0,10"/>
-           <TextBox PlaceholderText="Почта" Text="{Binding Email}" Foreground="Orange" Background="#474444" PlaceholderForeground="White" Margin="0,0,0,10"/>
+           <TextBox PlaceholderText="{Binding SelectedStaff.Family}" Text="{Binding Family}" Foreground="Orange" Background="#474444" PlaceholderForeground="White" Margin="0,0,0,10"/>
+           <TextBox PlaceholderText="{Binding SelectedStaff.Name}" Text="{Binding Name}" Foreground="Orange" Background="#474444" PlaceholderForeground="White" Margin="0,0,0,10"/>
+           <TextBox PlaceholderText="{Binding SelectedStaff.Father}" Text="{Binding Father}" Foreground="Orange" Background="#474444" PlaceholderForeground="White" Margin="0,0,0,10"/>
+           <TextBox PlaceholderText="{Binding SelectedStaff.Phone}" Text="{Binding Phone}" Foreground="Orange" Background="#474444" PlaceholderForeground="White" Margin="0,0,0,10"/>
+           <TextBox PlaceholderText="{Binding SelectedStaff.Email}" Text="{Binding Email}" Foreground="Orange" Background="#474444" PlaceholderForeground="White" Margin="0,0,0,10"/>
            <TextBlock Foreground="Red" Text="{Binding ErrorMessage}" HorizontalAlignment="Center" Margin="0,0,0,10"/>
        </StackPanel>
        <StackPanel Grid.Row="1" Grid.Column="2">
            <ComboBox Cursor="Hand" ItemsSource="{Binding GettedSpecializations}" SelectedItem="{Binding SelectedSpec, Mode=TwoWay}" DisplayMemberBinding="{Binding Name}" PlaceholderText="Специальность" Foreground="Orange" Background="#474444" PlaceholderForeground="White" Margin="0,0,0,10"/>
-           <TextBox PlaceholderText="Ставка" Text="{Binding Stavka}" Foreground="Orange" Background="#474444" PlaceholderForeground="White" Margin="0,0,0,10"/>
-           <TextBox PlaceholderText="Логин" Text="{Binding Datalog}" Foreground="Orange" Background="#474444" PlaceholderForeground="White" Margin="0,0,0,10"/>
+           <TextBox PlaceholderText="{Binding SelectedStaff.Stavka}" Text="{Binding Stavka}" Foreground="Orange" Background="#474444" PlaceholderForeground="White" Margin="0,0,0,10"/>
+           <TextBox PlaceholderText="{Binding SelectedStaff.DataLogId}" Text="{Binding Datalog}" Foreground="Orange" Background="#474444" PlaceholderForeground="White" Margin="0,0,0,10"/>
            <TextBox PasswordChar="*" PlaceholderText="Пароль" Foreground="Orange" Background="#474444" PlaceholderForeground="White" Margin="0,0,0,10" Text="{Binding Password}"/>
            <TextBox PasswordChar="*" PlaceholderText="Подтвердите пароль" Foreground="Orange" Background="#474444" PlaceholderForeground="White" Margin="0,0,0,10" Text="{Binding SecondPassword}"/>
            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                <Button Content="Создать" Command="{Binding RegisterStaffCommand}" CommandParameter="{Binding $parent[Window]}" Foreground="White" Background="Orange" Cursor="Hand"/>
+                <Button Content="Сохранить" Command="{Binding UpdateStaffCommand}" CommandParameter="{Binding $parent[Window]}" Foreground="White" Background="Orange" Cursor="Hand"/>
                 <Button Content="Назад" Foreground="White" Background="Red" Margin="10,0,0,0" Cursor="Hand"/>
             </StackPanel>
        </StackPanel>

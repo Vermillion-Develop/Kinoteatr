@@ -91,14 +91,14 @@
         <Grid Grid.Row="1" Background="#1E1E1E" ColumnDefinitions="50*,50*" RowDefinitions="50*, 50*">
             <Grid RowDefinitions="50 50*" Grid.ColumnSpan="3">
                 <StackPanel Grid.Row="0"  Orientation="Horizontal" >
-                    <Button Cursor="Hand" Content="Добавить" Foreground="White" Background="#17A117" VerticalAlignment="Center" Margin="10,0,10,0" Command="{Binding OpenAddStaffFormCommand}">
+                    <Button Cursor="Hand" Content="Добавить" Foreground="White" Background="#17A117" VerticalAlignment="Center" Margin="10,0,10,0" Command="{Binding OpenAddStaffFormCommand}" CommandParameter="{Binding $parent[Window]}">
                         <Button.Styles>
                             <Style Selector=":pointerover /template/ ContentPresenter">
                                 <Setter Property="Background" Value="#69D669"/>
                             </Style>
                         </Button.Styles>
                     </Button>
-                    <Button Cursor="Hand" Content="Редактировать" Foreground="White" Background="Orange" VerticalAlignment="Center" Margin="0,0,10,0">
+                    <Button Cursor="Hand" Content="Редактировать" Foreground="White" Background="Orange" VerticalAlignment="Center" Margin="0,0,10,0" Command="{Binding OpenUpdateStaffForm}" CommandParameter="{Binding $parent[Window]}">
                         <Button.Styles>
                             <Style Selector=":pointerover /template/ ContentPresenter">
                                 <Setter Property="Background" Value="#FFC457"/>
@@ -114,7 +114,7 @@
                     </Button>
                     <TextBox VerticalAlignment="Center" Margin="0,0,10,0" PlaceholderText="Поиск сотрудников" PlaceholderForeground="White" Background="#474444" Foreground="Orange" MaxWidth="200" HorizontalContentAlignment="Center"/>
                 </StackPanel>
-                <ListBox Grid.Row="1" Grid.ColumnSpan="2" ItemsSource="{Binding GettedStaffs}" Background="#1E1E1E">
+                <ListBox Grid.Row="1" Grid.ColumnSpan="2" ItemsSource="{Binding GettedStaffs}" SelectedItem="{Binding SelectedStaff, Mode=TwoWay}" Background="#1E1E1E">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <Border BorderBrush="Orange" BorderThickness="1" CornerRadius="5" Padding="0,20">

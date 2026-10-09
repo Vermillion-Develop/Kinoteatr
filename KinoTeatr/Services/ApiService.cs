@@ -76,5 +76,21 @@ namespace CinemaHub.Services
                 return new List<Specialization>();
             }
         }
+
+        public async Task<bool> RegisterStaff(string? family, string? name, string? father, int? role, string? phone, string? email, decimal? stavka, string? datalog, string? password)
+        {
+            try
+            {
+                NewStaffRequest dataStaff = new NewStaffRequest() { Family = family, Name = name, Father = father, SpecializationId = role, Phone = phone, Email = email, Stavka = stavka, DataLogId = datalog, Password = password};
+                var response = await _httpClient.PostAsJsonAsync("api/Staff/newStaff", dataStaff);
+                return response.IsSuccessStatusCode;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("Ошибка при регистрации сотрудника");
+                return false;
+            }
+            
+        }
     }
 }

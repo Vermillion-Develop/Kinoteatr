@@ -13,5 +13,6 @@ namespace CinemaHub.Services
 
         Task<StaffDTO?> LoginIn(string? login, string? password);
         Task<List<Specialization>> GetSpecializationsAsync();
+        Task<bool> RegisterStaff(string? family, string? name, string? father, int? role, string? phone, string? email, decimal? stavka, string? datalog, string? password);
     }
 }
