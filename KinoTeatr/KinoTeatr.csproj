@@ -29,6 +29,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Views\ProjectPageWindow.axaml.cs">
+      <DependentUpon>ProjectPageWindow.axaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\UpdateStaffPageWindow.axaml.cs">
       <DependentUpon>UpdateStaffPageWindow.axaml</DependentUpon>
     </Compile>

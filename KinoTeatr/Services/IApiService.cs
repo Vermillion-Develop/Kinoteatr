@@ -17,5 +17,7 @@ namespace CinemaHub.Services
         Task<bool> UpdateStaffAsync(string? family, string? name, string? father, int? role, string? phone, string? email, decimal? stavka, string? datalog, string? password, int? userId, string? newDatalog);
 
         Task<bool> DeleteStaffAsync(int? staffId);
+        Task<List<VideoProductDTO>> GetVideoProductDTOsAsync();
+        Task<List<StatusVideoProduct>> GetStatusVideoAsync();
     }
 }

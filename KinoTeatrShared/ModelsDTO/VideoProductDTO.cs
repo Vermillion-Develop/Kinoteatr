@@ -4,7 +4,7 @@ using System.Text;
 
 namespace KinoTeatrShared.Models
 {
-    public class VideoProduct
+    public class VideoProductDTO
     {
         public int Id { get; set; }
         public string? Name { get; set; }
@@ -15,5 +15,10 @@ namespace KinoTeatrShared.Models
         public int? StatusVideoProductId { get; set; }
         public int? AdultVideoProductId { get; set; }
         public string? Idea { get; set; }
+
+        public string? StatusVideoName { get; set; }
+        public string? AdultVideoName { get; set; }
+        public string? VidVideoName { get; set; }
+
     }
 }

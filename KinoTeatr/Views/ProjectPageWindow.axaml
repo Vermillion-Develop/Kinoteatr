@@ -5,13 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:helpers="clr-namespace:KinoTeatr.ViewModels"
         mc:Ignorable="d" d:DesignWidth="700" d:DesignHeight="450"
-        x:Class="KinoTeatr.Views.PrimaryPageWindow"
-        x:DataType="vm:PrimaryPageViewModel"
+        x:Class="KinoTeatr.Views.ProjectPageWindow"
+        x:DataType="vm:ProjectPageViewModel"
         Icon="/Assets/avalonia-logo.ico"
         Title="KinoTeatr">
 
     <Design.DataContext>
-        <vm:PrimaryPageViewModel/>
+        <vm:ProjectPageViewModel/>
     </Design.DataContext>
     <Grid RowDefinitions="20*, 80*">
         <Grid Grid.Row="0" Background="#0E0B12">
@@ -36,10 +36,10 @@
                             <TextBlock Foreground="Orange" Text="График съемок" VerticalAlignment="Center"/>
                         </StackPanel>
                     </Button>
-                    <Button Cursor="Hand" HorizontalAlignment="Stretch" Background="#1E1C18" Command="{x:Static helpers:PublicViewModelMethods.OpenStaffCommand}" CommandParameter="{Binding $parent[Window]}">
+                    <Button Cursor="Hand" HorizontalAlignment="Stretch" Background="#1E1C18">
                         <StackPanel Orientation="Horizontal">
                             <Image VerticalAlignment="Center" Width="25" Height="25" Source="/Assets/Images/person.png" Margin="0,0,10,0"/>
-                            <TextBlock Foreground="Orange" Text="Сотрудники" VerticalAlignment="Center"/>
+                            <TextBlock Foreground="#CBCBCB" IsEnabled="False" Text="Сотрудники" VerticalAlignment="Center"/>
                         </StackPanel>
                     </Button>
                     <Button Cursor="Hand" HorizontalAlignment="Stretch" Background="#1E1C18">
@@ -48,7 +48,7 @@
                             <TextBlock Foreground="Orange" Text="Площадки" VerticalAlignment="Center"/>
                         </StackPanel>
                     </Button>
-                    <Button Cursor="Hand" HorizontalAlignment="Stretch" Background="#1E1C18" Command="{x:Static helpers:PublicViewModelMethods.OpenProjectsCommand}" CommandParameter="{Binding $parent[Window]}">
+                    <Button Cursor="Hand" HorizontalAlignment="Stretch" Background="#1E1C18">
                         <StackPanel Orientation="Horizontal">
                             <Image VerticalAlignment="Center" Width="25" Height="25" Source="/Assets/Images/projects.png" Margin="0,0,10,0"/>
                             <TextBlock Foreground="Orange" Text="Проекты" VerticalAlignment="Center"/>
@@ -89,58 +89,58 @@
             </ComboBox>
         </Grid>
         <Grid Grid.Row="1" Background="#1E1E1E" ColumnDefinitions="50*,50*" RowDefinitions="50*, 50*">
-            <ScrollViewer Grid.Row="0" Grid.Column="0">
-                <Grid>
-                    <ListBox Background="red">
-                        <ListBox.ItemTemplate>
-                            <DataTemplate>
-                                <StackPanel Orientation="Horizontal">
-                                    
-                                </StackPanel>
-                            </DataTemplate>
-                        </ListBox.ItemTemplate>
-                    </ListBox>
-                </Grid>
-            </ScrollViewer>
-            <ScrollViewer Grid.Row="1" Grid.Column="0">
-                <Grid>
-                    <ListBox Background="blue">
-                        <ListBox.ItemTemplate>
-                            <DataTemplate>
-                                <StackPanel Orientation="Horizontal">
-                                    
-                                </StackPanel>
-                            </DataTemplate>
-                        </ListBox.ItemTemplate>
-                    </ListBox>
-                </Grid>
-            </ScrollViewer>
-            <ScrollViewer Grid.Row="0" Grid.Column="1">
-                <Grid>
-                    <ListBox Background="Yellow">
-                        <ListBox.ItemTemplate>
-                            <DataTemplate>
-                                <StackPanel Orientation="Horizontal">
-                                    
-                                </StackPanel>
-                            </DataTemplate>
-                        </ListBox.ItemTemplate>
-                    </ListBox>
-                </Grid>
-            </ScrollViewer>
-            <ScrollViewer Grid.Row="1" Grid.Column="1">
-                <Grid>
-                    <ListBox  Background="White">
-                        <ListBox.ItemTemplate>
-                            <DataTemplate>
-                                <StackPanel Orientation="Horizontal">
-                                    
-                                </StackPanel>
-                            </DataTemplate>
-                        </ListBox.ItemTemplate>
-                    </ListBox>
-                </Grid>
-            </ScrollViewer>
+            <Grid RowDefinitions="20* 80*" Grid.RowSpan="2" Grid.ColumnSpan="3">
+                <StackPanel Grid.Row="0"  Orientation="Horizontal" >
+                    <Button Cursor="Hand" Content="Добавить" Foreground="White" Background="#17A117" VerticalAlignment="Center" Margin="10,0,10,0"  CommandParameter="{Binding $parent[Window]}">
+                        <Button.Styles>
+                            <Style Selector=":pointerover /template/ ContentPresenter">
+                                <Setter Property="Background" Value="#69D669"/>
+                            </Style>
+                        </Button.Styles>
+                    </Button>
+                    <Button Cursor="Hand" Content="Редактировать" Foreground="White" Background="Orange" VerticalAlignment="Center" Margin="0,0,10,0"  CommandParameter="{Binding $parent[Window]}">
+                        <Button.Styles>
+                            <Style Selector=":pointerover /template/ ContentPresenter">
+                                <Setter Property="Background" Value="#FFC457"/>
+                            </Style>
+                        </Button.Styles>
+                    </Button>
+                    <Button Cursor="Hand" Content="Удалить" Foreground="White" Background="Red" VerticalAlignment="Center" Margin="0,0,10,0" >
+                        <Button.Styles>
+                            <Style Selector=":pointerover /template/ ContentPresenter">
+                                <Setter Property="Background" Value="#FF5757"/>
+                            </Style>
+                        </Button.Styles>
+                    </Button>
+                    <ComboBox ItemsSource="{Binding GettedStatuses}" DisplayMemberBinding="{Binding Name}" VerticalAlignment="Center" Margin="0,0,10,0" SelectedItem="{Binding SelectedStatus, Mode=TwoWay}"  PlaceholderText="Статус проекта" PlaceholderForeground="White" Background="#474444" Foreground="Orange" MaxWidth="200" HorizontalContentAlignment="Center"/>
+                    <TextBox VerticalAlignment="Center" Margin="0,0,10,0"  PlaceholderText="Поиск проекта" PlaceholderForeground="White" Background="#474444" Foreground="Orange" MaxWidth="200" HorizontalContentAlignment="Center" Text="{Binding SearchStroke, Mode=TwoWay}"/>
+                </StackPanel>
+                <ListBox Grid.Row="1" Grid.ColumnSpan="2" ItemsSource="{Binding GettedProjects}" SelectedItem="{Binding , Mode=TwoWay}" Background="#1E1E1E">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Border BorderBrush="Orange" BorderThickness="1" CornerRadius="5" Padding="0,20">
+                                    <StackPanel Orientation="Horizontal" >
+                                        <TextBlock VerticalAlignment="Center" Text="{Binding Name}" Margin="10,0" Foreground="White"/>
+                                        <TextBlock VerticalAlignment="Center" Text="{Binding Budget }" Margin="10,0" Foreground="White"/>
+                                        <TextBlock VerticalAlignment="Center" Text="{Binding VidVideoName }" Margin="10,0" Foreground="White"/>
+                                        <TextBlock VerticalAlignment="Center" Text="{Binding DateStart}" Margin="10,0" Foreground="White"/>
+                                        <TextBlock VerticalAlignment="Center" Text="{Binding DateEnd }" Margin="10,0" Foreground="White"/>
+                                        <TextBlock VerticalAlignment="Center" Text="{Binding StatusVideoName}" Margin="10,0" Foreground="White"/>
+                                        <TextBlock VerticalAlignment="Center" Text="{Binding AdultVideoName}" Margin="10,0" Foreground="White"/>
+                                        <TextBlock VerticalAlignment="Center" Text="{Binding Idea }" Margin="10,0" Foreground="White"/>
+                                        <Button VerticalAlignment="Center" Content="Подробнее" Foreground="White" Background="Orange" Margin="40,0">
+                                            <Button.Styles>
+                                                <Style Selector=":pointerover /template/ ContentPresenter">
+                                                    <Setter Property="Background" Value="Orange"/>
+                                                </Style>
+                                            </Button.Styles>
+                                        </Button>
+                                    </StackPanel>
+                                </Border>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </Grid>
         </Grid>
     </Grid>
 </Window>

@@ -120,5 +120,43 @@ namespace CinemaHub.Services
                 return false;
             }
         }
+
+        public async Task<List<VideoProductDTO>> GetVideoProductDTOsAsync()
+        {
+            try
+            {
+                var response = await _httpClient.GetFromJsonAsync<List<VideoProductDTO>>("api/Project/getProjects");
+                if(response == null)
+                {
+                    Debug.WriteLine("Ошибка при получении специализаций");
+                    return new List<VideoProductDTO>();
+                }
+                return response;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("Ошибка: " + ex.Message);
+                return new List<VideoProductDTO>();
+            }
+        }
+
+        public async Task<List<StatusVideoProduct>> GetStatusVideoAsync()
+        {
+            try
+            {
+                var response = await _httpClient.GetFromJsonAsync<List<StatusVideoProduct>>("api/Project/getStatuses");
+                if(response == null)
+                {
+                    Debug.WriteLine("Ошибка при получении специализаций");
+                    return new List<StatusVideoProduct>();
+                }
+                return response;
+            }
+            catch(Exception ex)
+            {
+                Debug.WriteLine("Ошибка: " + ex.Message);
+                return new List<StatusVideoProduct>();
+            }
+        }
     }
 }
