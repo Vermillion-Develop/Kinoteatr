@@ -103,6 +103,21 @@ namespace KinoTeatr.ViewModels
             addVideo.Show();
         }
 
+        [RelayCommand]
+        public async Task OpenUpdateProjectFormAsync()
+        {
+            if(SelectedProject == null)
+            {
+                Debug.WriteLine("Выберите проект для редактирования");
+                return;
+            }
+            UpdateProjectPageWindow addVideo = new UpdateProjectPageWindow()
+            {
+                DataContext = new UpdateProjectViewModel(SelectedProject)
+            };
+            addVideo.Show();
+        }
+
         partial void OnSelectedStatusChanging(StatusVideoProduct? value)
         {
             GettedProjects.Clear();

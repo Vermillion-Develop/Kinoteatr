@@ -26,7 +26,7 @@
        </StackPanel>
        <StackPanel Grid.Row="1" Grid.Column="2">
            <ComboBox Cursor="Hand" ItemsSource="{Binding GettedSpecializations}" SelectedItem="{Binding SelectedSpec, Mode=TwoWay}" DisplayMemberBinding="{Binding Name}" PlaceholderText="Специальность" Foreground="Orange" Background="#474444" PlaceholderForeground="White" Margin="0,0,0,10"/>
-           <NumericUpDown PlaceholderText="Ставка" PlaceholderForeground="White" Value="{Binding SelectedStaff.Stavka}" Foreground="Orange" Background="#474444" Margin="0,0,0,10" Minimum="0" Maximum="1" Increment="0.01" FormatString="0.00"/>
+           <NumericUpDown PlaceholderText="Ставка" PlaceholderForeground="White" Value="{Binding Stavka}" Foreground="Orange" Background="#474444" Margin="0,0,0,10" Minimum="0" Maximum="1" Increment="0.01" FormatString="0.00"/>
            <TextBox MaxLength="250" PlaceholderText="{Binding SelectedStaff.DataLogId}" Text="{Binding Datalog}" Foreground="Orange" Background="#474444" PlaceholderForeground="White" Margin="0,0,0,10"/>
            <TextBox PasswordChar="*" PlaceholderText="Пароль" Foreground="Orange" Background="#474444" PlaceholderForeground="White" Margin="0,0,0,10" Text="{Binding Password}"/>
            <TextBox PasswordChar="*" PlaceholderText="Подтвердите пароль" Foreground="Orange" Background="#474444" PlaceholderForeground="White" Margin="0,0,0,10" Text="{Binding SecondPassword}"/>

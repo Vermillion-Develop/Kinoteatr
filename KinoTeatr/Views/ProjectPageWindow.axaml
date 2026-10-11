@@ -98,7 +98,7 @@
                             </Style>
                         </Button.Styles>
                     </Button>
-                    <Button Cursor="Hand" Content="Редактировать" Foreground="White" Background="Orange" VerticalAlignment="Center" Margin="0,0,10,0"  CommandParameter="{Binding $parent[Window]}">
+                    <Button Cursor="Hand" Content="Редактировать" Foreground="White" Background="Orange" VerticalAlignment="Center" Margin="0,0,10,0" Command="{Binding OpenUpdateProjectFormCommand}">
                         <Button.Styles>
                             <Style Selector=":pointerover /template/ ContentPresenter">
                                 <Setter Property="Background" Value="#FFC457"/>
@@ -108,7 +108,7 @@
                     <ComboBox ItemsSource="{Binding GettedStatuses}" DisplayMemberBinding="{Binding Name}" VerticalAlignment="Center" Margin="0,0,10,0" SelectedItem="{Binding SelectedStatus, Mode=TwoWay}"  PlaceholderText="Статус проекта" PlaceholderForeground="White" Background="#474444" Foreground="Orange" MaxWidth="200" HorizontalContentAlignment="Center"/>
                     <TextBox VerticalAlignment="Center" Margin="0,0,10,0"  PlaceholderText="Поиск проекта" PlaceholderForeground="White" Background="#474444" Foreground="Orange" MaxWidth="200" HorizontalContentAlignment="Center" Text="{Binding SearchStroke, Mode=TwoWay}"/>
                 </StackPanel>
-                <ListBox Grid.Row="1" Grid.ColumnSpan="2" ItemsSource="{Binding GettedProjects}" SelectedItem="{Binding , Mode=TwoWay}" Background="#1E1E1E">
+                <ListBox Grid.Row="1" Grid.ColumnSpan="2" ItemsSource="{Binding GettedProjects}" SelectedItem="{Binding SelectedProject, Mode=TwoWay}" Background="#1E1E1E">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <Border BorderBrush="Orange" BorderThickness="1" CornerRadius="5" Padding="0,20">

@@ -129,5 +129,41 @@ namespace KinoTeatrBackground.Controllers
                 return StatusCode(500, new { message = "Ошибка: " + ex.Message });
             }
         }
+
+        [HttpPost("updateSelectedVideo")]
+        public async Task<IActionResult> UpdateSelectedProject([FromBody] NewProjectRequest request)
+        {
+            Debug.WriteLine(request.Id);
+
+            if (request == null)
+            {
+                return BadRequest();
+            }
+            using var transaction = await _context.Database.BeginTransactionAsync();
+            try
+            {
+                VideoProduct? selectedProduct = await _context.VideoProducts.FirstOrDefaultAsync(x => x.Id == request.Id);
+                if(selectedProduct == null)
+                {
+                    return StatusCode(500);
+                }
+                selectedProduct.Name = request.Name;
+                selectedProduct.Budget = request.Budget;
+                selectedProduct.VidVideoProductId = request.VidVideoProductId;
+                selectedProduct.DateEnd = request.DateEnd;
+                selectedProduct.StatusVideoProductId = request.StatusVideoProductId;
+                selectedProduct.AdultVideoProductId = request.AdultVideoProductId;
+                selectedProduct.Idea = request.Idea;
+                await _context.SaveChangesAsync();
+                await transaction.CommitAsync();
+                return Ok(new { message = "Успешное обновление проекта" });
+
+            }
+            catch (Exception ex) 
+            {
+                transaction.Rollback();
+                return StatusCode(500, new { message = "Ошибка обновления проекта" + ex.Message });
+            }
+        }
     }
 }

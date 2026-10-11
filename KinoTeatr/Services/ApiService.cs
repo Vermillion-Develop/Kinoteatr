@@ -211,5 +211,20 @@ namespace CinemaHub.Services
                 return false;
             }
         }
+
+        public async Task<bool> UpdateSelectedProjectAsync(int videoId, string? name, decimal? budget, int? vidId, DateTimeOffset? dateEnd, int? statusId, int? adultId, string? idea)
+        {
+            try
+            {
+                NewProjectRequest dataProject = new NewProjectRequest {Id = videoId, Name = name, Budget = budget, VidVideoProductId = vidId, DateEnd = dateEnd, StatusVideoProductId = statusId, AdultVideoProductId = adultId, Idea = idea };
+                var respose = await _httpClient.PostAsJsonAsync("api/Project/updateSelectedVideo", dataProject);
+                return respose.IsSuccessStatusCode;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("Ошибка: " + ex.Message);
+                return false;
+            }
+        }
     }
 }
