@@ -44,7 +44,7 @@
            <TextBlock Text="Конечная дата:" Foreground="White"/>
            <DatePicker SelectedDate="{Binding SelectedDateEnd}" Foreground="Orange" Background="#474444" Margin="0,0,0,10"/>
            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                <Button Content="Сохранить" Foreground="White" Background="#17EE22" Margin="10,0,0,0" Cursor="Hand" Command="{Binding UpdateProjectCommand}">
+                <Button Content="Сохранить" Foreground="White" Background="#17EE22" Margin="10,0,0,0" Cursor="Hand" Command="{Binding UpdateProjectCommand}" CommandParameter="{Binding $parent[Window]}">
                     <Button.Styles>
                         <Style Selector=":pointerover /template/ ContentPresenter">
                             <Setter Property="Background" Value="#5EEB5E"/>

@@ -1,4 +1,5 @@
 ﻿using Avalonia.Controls;
+using Avalonia.Controls.Documents;
 using CinemaHub.Services;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -94,17 +95,24 @@ namespace KinoTeatr.ViewModels
         }
 
         [RelayCommand]
-        public async Task OpenAddProjectFormAsync()
+        public async Task OpenAddProjectFormAsync(Window? currentWindow)
         {
             AddNewProjectPageWindow addVideo = new AddNewProjectPageWindow()
             {
                 DataContext = new AddNewProjectViewModel()
             };
-            addVideo.Show();
+            if (currentWindow != null)
+            {
+                bool dialog = await addVideo.ShowDialog<bool>(currentWindow);
+                if (dialog)
+                {
+                    await GetProjectsAsync();
+                }
+            }
         }
 
         [RelayCommand]
-        public async Task OpenUpdateProjectFormAsync()
+        public async Task OpenUpdateProjectFormAsync(Window? currentWindow)
         {
             if(SelectedProject == null)
             {
@@ -115,7 +123,14 @@ namespace KinoTeatr.ViewModels
             {
                 DataContext = new UpdateProjectViewModel(SelectedProject)
             };
-            addVideo.Show();
+            if (currentWindow != null)
+            {
+                bool dialog = await addVideo.ShowDialog<bool>(currentWindow);
+                if (dialog) 
+                {
+                    await GetProjectsAsync();
+                }
+            }
         }
 
         partial void OnSelectedStatusChanging(StatusVideoProduct? value)

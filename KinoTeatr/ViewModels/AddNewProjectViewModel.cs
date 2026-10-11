@@ -117,7 +117,7 @@ namespace KinoTeatr.ViewModels
             var result = await _apiService.AddNewProjectAsync(NameProject, Budget, SelectedVidVideo?.Id, SelectedDateStart.Value.ToUniversalTime(), SelectedDateEnd.Value.ToUniversalTime(), SelectedVidVideo?.Id,SelectedAdult?.Id,Idea);
             if (result)
             {
-                currentWindow?.Hide();
+                currentWindow?.Close(true);
             }
             else
             {

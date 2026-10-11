@@ -98,7 +98,7 @@
                             </Style>
                         </Button.Styles>
                     </Button>
-                    <Button Cursor="Hand" Content="Редактировать" Foreground="White" Background="Orange" VerticalAlignment="Center" Margin="0,0,10,0" Command="{Binding OpenUpdateProjectFormCommand}">
+                    <Button Cursor="Hand" Content="Редактировать" Foreground="White" Background="Orange" VerticalAlignment="Center" Margin="0,0,10,0" Command="{Binding OpenUpdateProjectFormCommand}" CommandParameter="{Binding $parent[Window]}">
                         <Button.Styles>
                             <Style Selector=":pointerover /template/ ContentPresenter">
                                 <Setter Property="Background" Value="#FFC457"/>

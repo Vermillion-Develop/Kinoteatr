@@ -99,7 +99,7 @@ namespace KinoTeatr.ViewModels
         }
 
         [RelayCommand]
-        public async Task UpdateProjectAsync()
+        public async Task UpdateProjectAsync(Window? currentWindow)
         {
             if(string.IsNullOrWhiteSpace(NameProject) || VideoProductDTO == null || Budget == null || SelectedVidVideo == null || SelectedDateEnd == null || SelectedStatus == null || SelectedAdult == null)
             {
@@ -109,6 +109,10 @@ namespace KinoTeatr.ViewModels
                 Debug.WriteLine(VideoProductDTO.Id);
 
             var result = await _apiService.UpdateSelectedProjectAsync(VideoProductDTO.Id, NameProject, Budget, SelectedVidVideo.Id, SelectedDateEnd.Value.ToUniversalTime(), SelectedStatus.Id, SelectedAdult.Id, Idea);
+            if (result)
+            {
+                currentWindow?.Close(true);
+            }
         }
     }
 }
