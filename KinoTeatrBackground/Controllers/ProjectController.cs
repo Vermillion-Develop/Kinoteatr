@@ -72,5 +72,62 @@ namespace KinoTeatrBackground.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        [HttpGet("getAdult")]
+        public async Task<ActionResult<IEnumerable<AdultVideoProduct>>> GetAllAdults()
+        {
+            try
+            {
+                var adultList = await (from s in _context.AdultVideoProducts select s).ToListAsync();
+                return Ok(adultList);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpGet("getVidVideo")]
+        public async Task<ActionResult<IEnumerable<VidVideoProduct>>> GetAllVidVideo()
+        {
+            try
+            {
+                var vidList = await (from s in _context.VidVideoProducts select s).ToListAsync();
+                return Ok(vidList);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpPost("addNewVideo")]
+        public async Task<IActionResult> AddNewProject([FromBody] NewProjectRequest request)
+        {
+            using var transaction = await _context.Database.BeginTransactionAsync();
+            try
+            {
+                var newFilm = new VideoProduct()
+                {
+                    Name = request.Name,
+                    Budget = request.Budget,
+                    VidVideoProductId = request.VidVideoProductId,
+                    DateStart = request.DateStart,
+                    DateEnd = request.DateEnd,
+                    StatusVideoProductId = request.StatusVideoProductId,
+                    AdultVideoProductId = request.AdultVideoProductId,
+                    Idea = request.Idea
+                };
+                _context.VideoProducts.Add(newFilm);
+                await _context.SaveChangesAsync();
+                await transaction.CommitAsync();
+                return Ok(new { message = "Успешная регистрация сотрудника!" });
+            }
+            catch (Exception ex) 
+            {
+                await transaction.RollbackAsync();
+                return StatusCode(500, new { message = "Ошибка: " + ex.Message });
+            }
+        }
     }
 }

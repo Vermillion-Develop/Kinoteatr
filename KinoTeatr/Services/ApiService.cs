@@ -158,5 +158,58 @@ namespace CinemaHub.Services
                 return new List<StatusVideoProduct>();
             }
         }
+
+        public async Task<List<AdultVideoProduct>> GetAdultsAsync()
+        {
+            try
+            {
+                var response = await _httpClient.GetFromJsonAsync<List<AdultVideoProduct>>("api/Project/getAdult");
+                if (response == null)
+                {
+                    Debug.WriteLine("Ошибка при получении возрастного рейтинга");
+                    return new List<AdultVideoProduct>();
+                }
+                return response;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("Ошибка: " + ex.Message);
+                return new List<AdultVideoProduct>();
+            }
+        }
+
+        public async Task<List<VidVideoProduct>> GetVidVideoAsync()
+        {
+            try
+            {
+                var response = await _httpClient.GetFromJsonAsync<List<VidVideoProduct>>("api/Project/getVidVideo");
+                if (response == null)
+                {
+                    Debug.WriteLine("Ошибка при получении видов фильма");
+                    return new List<VidVideoProduct>();
+                }
+                return response;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("Ошибка: " + ex.Message);
+                return new List<VidVideoProduct>();
+            }
+        }
+
+        public async Task<bool> AddNewProjectAsync(string? name, decimal? budget, int? vidId, DateTimeOffset? dateStart, DateTimeOffset? dateEnd, int? statusId, int? adultId, string? idea)
+        {
+            try
+            {
+                NewProjectRequest dataProject = new NewProjectRequest() {Name = name, Budget = budget, VidVideoProductId = vidId, DateStart = dateStart, DateEnd = dateEnd, StatusVideoProductId = statusId, AdultVideoProductId = adultId, Idea = idea };
+                var respose = await _httpClient.PostAsJsonAsync("api/Project/addNewVideo", dataProject);
+                return respose.IsSuccessStatusCode;
+            }
+            catch (Exception ex) 
+            {
+                Debug.WriteLine("Ошибка: " + ex.Message);
+                return false;
+            }
+        }
     }
 }

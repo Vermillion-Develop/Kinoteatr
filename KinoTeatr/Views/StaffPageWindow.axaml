@@ -48,7 +48,7 @@
                             <TextBlock Foreground="Orange" Text="Площадки" VerticalAlignment="Center"/>
                         </StackPanel>
                     </Button>
-                    <Button Cursor="Hand" HorizontalAlignment="Stretch" Background="#1E1C18">
+                    <Button Cursor="Hand" HorizontalAlignment="Stretch" Background="#1E1C18" Command="{x:Static helpers:PublicViewModelMethods.OpenProjectsCommand}" CommandParameter="{Binding $parent[Window]}">
                         <StackPanel Orientation="Horizontal">
                             <Image VerticalAlignment="Center" Width="25" Height="25" Source="/Assets/Images/projects.png" Margin="0,0,10,0"/>
                             <TextBlock Foreground="Orange" Text="Проекты" VerticalAlignment="Center"/>
@@ -105,7 +105,7 @@
                             </Style>
                         </Button.Styles>
                     </Button>
-                    <Button Cursor="Hand" Content="Удалить" Foreground="White" Background="Red" VerticalAlignment="Center" Margin="0,0,10,0" Command="{Binding DeleteSelectedStaffCommand}">
+                    <Button Cursor="Hand" Content="Удалить" Foreground="White" Background="Red" VerticalAlignment="Center" Margin="0,0,10,0" Command="{Binding DeleteSelectedStaffCommand}" CommandParameter="{Binding $parent[Window]}" >
                         <Button.Styles>
                             <Style Selector=":pointerover /template/ ContentPresenter">
                                 <Setter Property="Background" Value="#FF5757"/>

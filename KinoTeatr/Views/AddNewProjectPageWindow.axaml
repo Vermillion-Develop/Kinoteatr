@@ -1,0 +1,58 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:KinoTeatr.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:helpers="clr-namespace:KinoTeatr.ViewModels"
+        mc:Ignorable="d" d:DesignWidth="600" d:DesignHeight="350"
+        x:Class="KinoTeatr.Views.AddNewProjectPageWindow"
+        x:DataType="vm:AddNewProjectViewModel"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="KinoTeatr">
+
+   <Design.DataContext>
+        <vm:AddNewProjectViewModel/>
+    </Design.DataContext>
+    <Grid RowDefinitions="15*, 85*" ColumnDefinitions="45*, 5*, 45*" Background="#1E1E1E">
+        <TextBlock Grid.Row="0" VerticalAlignment="Center" Grid.ColumnSpan="3"  Foreground="Orange" FontSize="18" HorizontalAlignment="Center"/>
+        <Image VerticalAlignment="Center" HorizontalAlignment="Left" Source="/Assets/Images/projects.png" Width="30" Margin="10,0,0,0"/>
+       <StackPanel Grid.Row="1">
+           <TextBlock Text="Название:" Foreground="White"/>
+           <TextBox MaxLength="250" Text="{Binding NameProject}" Foreground="Orange" Background="#474444" Margin="0,0,0,10"/>
+           <TextBlock Text="Бюджет:" Foreground="White"/>
+           <NumericUpDown Minimum="0" Value="{Binding Budget}" FormatString="0.00" Increment="0.1" ParsingNumberStyle="Number" Foreground="Orange" Background="#474444" Margin="0,0,0,10"/>
+           <TextBlock Text="Дата начала:" Foreground="White"/>
+           <DatePicker SelectedDate="{Binding SelectedDateStart}" Foreground="Orange" Background="#474444" Margin="0,0,0,10"/>
+           <TextBlock Text="Сериал/Фильм:" Foreground="White"/>
+           <ComboBox SelectedItem="{Binding SelectedVidVideo, Mode=TwoWay}" ItemsSource="{Binding GettedTypeVideo}" DisplayMemberBinding="{Binding Name}" Foreground="Orange" Background="#474444" Margin="0,0,0,10" HorizontalAlignment="Stretch"/>
+           <TextBlock Text="{Binding ErrorMessage}" Foreground="Red" HorizontalAlignment="Center"/>
+       </StackPanel>
+       <StackPanel Grid.Row="1" Grid.Column="2">
+           <TextBlock Text="Текущий статус:" Foreground="White"/>
+           <ComboBox SelectedItem="{Binding SelectedStatus, Mode=TwoWay}" Foreground="Orange" Background="#474444" Margin="0,0,0,10" HorizontalAlignment="Stretch" ItemsSource="{Binding GettedStatuses}" DisplayMemberBinding="{Binding Name}"/>
+           <TextBlock Text="Возрастное ограничение:" Foreground="White"/>
+           <ComboBox SelectedItem="{Binding SelectedAdult, Mode=TwoWay}" ItemsSource="{Binding GettedAdults}" DisplayMemberBinding="{Binding Name}" Foreground="Orange" Background="#474444" Margin="0,0,0,10" HorizontalAlignment="Stretch"/>
+           <TextBlock Text="Конечная дата:" Foreground="White"/>
+           <DatePicker SelectedDate="{Binding SelectedDateEnd }" Foreground="Orange" Background="#474444" Margin="0,0,0,10"/>
+           <TextBlock Text="Идея продукта:" Foreground="White"/>
+           <TextBox Text="{Binding Idea}" TextWrapping="Wrap" Foreground="Orange" Background="#474444" Margin="0,0,0,10"/>
+           <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button Content="Добавить" Foreground="White" Background="#06D70B" Margin="10,0,0,0" Cursor="Hand" Command="{Binding AddNewProjectCommand}" CommandParameter="{Binding $parent[Window]}">
+                    <Button.Styles>
+                        <Style Selector=":pointerover /template/ ContentPresenter">
+                            <Setter Property="Background" Value="#42E946"/>
+                        </Style>
+                    </Button.Styles>
+                </Button>
+                <Button Content="Назад" Foreground="White" Background="Red" Margin="10,0,0,0" Cursor="Hand" Command="{x:Static helpers:PublicViewModelMethods.CloseCurrentWindowCommand}" CommandParameter="{Binding $parent[Window]}">
+                    <Button.Styles>
+                        <Style Selector=":pointerover /template/ ContentPresenter">
+                            <Setter Property="Background" Value="#F73B3B"/>
+                        </Style>
+                    </Button.Styles>
+                </Button>
+            </StackPanel>
+       </StackPanel>
+        
+    </Grid>
+</Window>

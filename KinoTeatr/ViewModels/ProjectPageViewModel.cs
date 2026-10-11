@@ -20,8 +20,9 @@ namespace KinoTeatr.ViewModels
         public ObservableCollection<VideoProductDTO> DefaultProjects { get; } = new ObservableCollection<VideoProductDTO>();
         public ObservableCollection<StatusVideoProduct> GettedStatuses { get; } = new ObservableCollection<StatusVideoProduct>();
 
-        //[ObservableProperty]
-        //public StatusVideoProduct? _selectedProject;
+        [ObservableProperty]
+        public VideoProductDTO? _selectedProject;
+
         [ObservableProperty]
         public StatusVideoProduct? _selectedStatus;
 
@@ -67,24 +68,40 @@ namespace KinoTeatr.ViewModels
             }
         }
 
-        //[RelayCommand]
-        //public async Task OpenAddNewProjectFormAsync(Window? currentWindow) //Открыть форму добавления сотрудника
-        //{
+        public async Task OpenAboutProjectFormAsync(Window? currentWindow, VideoProductDTO selectedVideo)
+        {
 
-        //    AddNewStaffPageWindow addStaff = new AddNewStaffPageWindow()
-        //    {
-        //        DataContext = new AddNewStaffPageViewModel()
-        //    };
+            AboutProjectPageWindow videoWin = new AboutProjectPageWindow()
+            {
+                DataContext = new AboutProjectViewModel(selectedVideo)
+            };
+            videoWin.Show();
+        }
 
-        //    if(currentWindow != null)
-        //    {
-        //        bool dialogres = await addStaff.ShowDialog<bool>(currentWindow);
-        //        if (dialogres)
-        //        {
+        [RelayCommand]
+        private async Task MultibindingAboutProject(object? parameter)
+        {
+            if (parameter is System.Collections.IList values && values.Count == 2)
+            {
+                var window = values[0] as Window;
+                var video = values[1] as VideoProductDTO;
 
-        //        }
-        //    }
-        //}
+                if (video != null)
+                {
+                    await OpenAboutProjectFormAsync(window, video);
+                }
+            }
+        }
+
+        [RelayCommand]
+        public async Task OpenAddProjectFormAsync()
+        {
+            AddNewProjectPageWindow addVideo = new AddNewProjectPageWindow()
+            {
+                DataContext = new AddNewProjectViewModel()
+            };
+            addVideo.Show();
+        }
 
         partial void OnSelectedStatusChanging(StatusVideoProduct? value)
         {

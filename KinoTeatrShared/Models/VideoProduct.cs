@@ -10,8 +10,8 @@ namespace KinoTeatrShared.Models
         public string? Name { get; set; }
         public decimal? Budget { get; set; }
         public int? VidVideoProductId { get; set; }
-        public DateTime? DateStart { get; set; }
-        public DateTime? DateEnd { get; set; }
+        public DateTimeOffset? DateStart { get; set; }
+        public DateTimeOffset? DateEnd { get; set; }
         public int? StatusVideoProductId { get; set; }
         public int? AdultVideoProductId { get; set; }
         public string? Idea { get; set; }
