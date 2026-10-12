@@ -11,7 +11,7 @@ using System.Diagnostics;
 
 namespace CinemaHub.Services
 {
-    public class ApiService:IApiService
+    public class ApiService : IApiService
     {
         private readonly HttpClient _httpClient;
 
@@ -31,7 +31,7 @@ namespace CinemaHub.Services
                 }
                 return response;
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 Debug.WriteLine("Произошла ошибка: " + ex.Message);
                 return new List<StaffDTO>();
@@ -50,7 +50,7 @@ namespace CinemaHub.Services
                 }
                 return null;
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 Debug.WriteLine($"Ошибка: {ex.Message}");
                 return null;
@@ -58,7 +58,7 @@ namespace CinemaHub.Services
 
         }
 
-        public async Task<List<Specialization>> GetSpecializationsAsync() 
+        public async Task<List<Specialization>> GetSpecializationsAsync()
         {
             try
             {
@@ -70,7 +70,7 @@ namespace CinemaHub.Services
                 }
                 return response;
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 Debug.WriteLine("Ошибка: " + ex.Message);
                 return new List<Specialization>();
@@ -81,7 +81,7 @@ namespace CinemaHub.Services
         {
             try
             {
-                NewStaffRequest dataStaff = new NewStaffRequest() { Family = family, Name = name, Father = father, SpecializationId = role, Phone = phone, Email = email, Stavka = stavka, DataLogId = datalog, Password = password};
+                NewStaffRequest dataStaff = new NewStaffRequest() { Family = family, Name = name, Father = father, SpecializationId = role, Phone = phone, Email = email, Stavka = stavka, DataLogId = datalog, Password = password };
                 var response = await _httpClient.PostAsJsonAsync("api/Staff/newStaff", dataStaff);
                 return response.IsSuccessStatusCode;
             }
@@ -100,13 +100,13 @@ namespace CinemaHub.Services
                 var response = await _httpClient.PostAsJsonAsync("api/Staff/updateStaff", dataStaff);
                 return response.IsSuccessStatusCode;
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 Debug.WriteLine("Ошибка при редактировании сотрудника");//
                 return false;
             }
         }
-        
+
         public async Task<bool> DeleteStaffAsync(int? staffId)
         {
             try
@@ -126,7 +126,7 @@ namespace CinemaHub.Services
             try
             {
                 var response = await _httpClient.GetFromJsonAsync<List<VideoProductDTO>>("api/Project/getProjects");
-                if(response == null)
+                if (response == null)
                 {
                     Debug.WriteLine("Ошибка при получении специализаций");
                     return new List<VideoProductDTO>();
@@ -145,14 +145,14 @@ namespace CinemaHub.Services
             try
             {
                 var response = await _httpClient.GetFromJsonAsync<List<StatusVideoProduct>>("api/Project/getStatuses");
-                if(response == null)
+                if (response == null)
                 {
                     Debug.WriteLine("Ошибка при получении специализаций");
                     return new List<StatusVideoProduct>();
                 }
                 return response;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Debug.WriteLine("Ошибка: " + ex.Message);
                 return new List<StatusVideoProduct>();
@@ -201,11 +201,11 @@ namespace CinemaHub.Services
         {
             try
             {
-                NewProjectRequest dataProject = new NewProjectRequest() {Name = name, Budget = budget, VidVideoProductId = vidId, DateStart = dateStart, DateEnd = dateEnd, StatusVideoProductId = statusId, AdultVideoProductId = adultId, Idea = idea };
+                NewProjectRequest dataProject = new NewProjectRequest() { Name = name, Budget = budget, VidVideoProductId = vidId, DateStart = dateStart, DateEnd = dateEnd, StatusVideoProductId = statusId, AdultVideoProductId = adultId, Idea = idea };
                 var respose = await _httpClient.PostAsJsonAsync("api/Project/addNewVideo", dataProject);
                 return respose.IsSuccessStatusCode;
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 Debug.WriteLine("Ошибка: " + ex.Message);
                 return false;
@@ -216,13 +216,98 @@ namespace CinemaHub.Services
         {
             try
             {
-                NewProjectRequest dataProject = new NewProjectRequest {Id = videoId, Name = name, Budget = budget, VidVideoProductId = vidId, DateEnd = dateEnd, StatusVideoProductId = statusId, AdultVideoProductId = adultId, Idea = idea };
+                NewProjectRequest dataProject = new NewProjectRequest { Id = videoId, Name = name, Budget = budget, VidVideoProductId = vidId, DateEnd = dateEnd, StatusVideoProductId = statusId, AdultVideoProductId = adultId, Idea = idea };
                 var respose = await _httpClient.PostAsJsonAsync("api/Project/updateSelectedVideo", dataProject);
                 return respose.IsSuccessStatusCode;
             }
             catch (Exception ex)
             {
                 Debug.WriteLine("Ошибка: " + ex.Message);
+                return false;
+            }
+        }
+
+        public async Task<List<CinemaGroupDTO>> GetAllGroupsAsync()
+        {
+            try
+            {
+                var response = await _httpClient.GetFromJsonAsync<List<CinemaGroupDTO>>("api/StaffGroup/getGroups");
+                if (response == null)
+                {
+                    Debug.WriteLine("Массив групп был пуст!");
+                    return new List<CinemaGroupDTO>();
+                }
+                return response;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"{ex.Message}");
+                return new List<CinemaGroupDTO>();
+            }
+        }
+
+        public async Task<bool> AddNewGroupAsync(string? name, int? productId)
+        {
+            try
+            {
+                NewGroupRequest? dataGroup = new NewGroupRequest { Name = name, ProductId = productId };
+                var response = await _httpClient.PostAsJsonAsync("api/StaffGroup/addGroup", dataGroup);
+                return response.IsSuccessStatusCode;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("Возникла ошибка добавления группы");
+                return false;
+            }
+        }
+
+        public async Task<bool> UpdateGroupAsync(string? name, int? productId, int? groupId)
+        {
+            try
+            {
+                NewGroupRequest dataRequest = new NewGroupRequest { Name = name, GroupId = groupId, ProductId = productId };
+                var response = await _httpClient.PostAsJsonAsync("api/StaffGroup/updateGroup", dataRequest);
+                return response.IsSuccessStatusCode;
+            }
+            catch (Exception ex) 
+            {
+                Debug.WriteLine($"{ex.Message}");
+                return false;
+            }
+        }   
+
+        public async Task<List<StaffGroupDTO>> GetStaffGroupDTOsAsync(int? groupId)
+        {
+            try
+            {
+                NewStaffGroupRequest dataDroup = new NewStaffGroupRequest() { GroupId = groupId };
+                var response = await _httpClient.PostAsJsonAsync("api/StaffGroup/getStaffGroup", dataDroup);
+                if (response.IsSuccessStatusCode)
+                {
+                    var result = await response.Content.ReadFromJsonAsync<List<StaffGroupDTO>>();
+                    return result ?? new List<StaffGroupDTO>();
+                }
+                Debug.WriteLine($"Ошибка при получении сотрудников в группе: {response.StatusCode}");
+                return new List<StaffGroupDTO>();
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Исключение: {ex.Message}");
+                return new List<StaffGroupDTO>();
+            }
+        }
+
+        public async Task<bool> AddStaffInGroup(int? staffId, int? videoId, int? groupId, int? roleId)
+        {
+            try
+            {
+                NewStaffInGroupRequest dataGroup = new NewStaffInGroupRequest() { StaffId = staffId, GroupId = groupId, ProductId = videoId, RoleId = roleId };
+                var response = await _httpClient.PostAsJsonAsync("api/StaffGroup/addStaffGroup", dataGroup);
+                return response.IsSuccessStatusCode;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"{ex.Message}");
                 return false;
             }
         }

@@ -13,6 +13,7 @@
     <Design.DataContext>
         <vm:AboutProjectViewModel/>
     </Design.DataContext>
+
     <Grid RowDefinitions="15*, 85*" ColumnDefinitions="45*, 5*, 45*" Background="#1E1E1E">
         <TextBlock Grid.Row="0" VerticalAlignment="Center" Grid.ColumnSpan="3" Text="{Binding VideoProductDTO.Name}" Foreground="Orange" FontSize="18" HorizontalAlignment="Center"/>
         <Image VerticalAlignment="Center" HorizontalAlignment="Left" Source="/Assets/Images/projects.png" Width="30" Margin="10,0,0,0"/>

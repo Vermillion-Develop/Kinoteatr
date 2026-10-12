@@ -1,0 +1,55 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:KinoTeatr.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:helpers="clr-namespace:KinoTeatr.ViewModels"
+        mc:Ignorable="d" d:DesignWidth="600" d:DesignHeight="450"
+        x:Class="KinoTeatr.Views.StaffInGroupPageWindow"
+        x:DataType="vm:StaffInGroupViewModel"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="KinoTeatr">
+
+    <Design.DataContext>
+        <vm:StaffInGroupViewModel/>
+    </Design.DataContext>
+    <Grid RowDefinitions="15*, 10*, 75*"  Background="#0E0B12">
+        <TextBlock Grid.Row="0" VerticalAlignment="Center" Grid.ColumnSpan="3" Text="{Binding SelectedGroup.VideoName}" Foreground="Orange" FontSize="18" HorizontalAlignment="Center"/>
+        <Image VerticalAlignment="Center" HorizontalAlignment="Left" Source="/Assets/Images/projects.png" Width="30" Margin="10,0,0,0"/>
+        <StackPanel Orientation="Horizontal" Grid.Row="1" Background="#1E1E1E">
+            <Button Margin="0,0,5,0" Background="#29E729" Foreground="White" Content="Добавить сотрудника" Command="{Binding OpenAddStaffFormCommand}" CommandParameter="{Binding $parent[Window]}">
+                <Button.Styles>
+                    <Style Selector=":pointerover /template/ ContentPresenter">
+                        <Setter Property="Background" Value="#4FD04F"/>
+                    </Style>
+                </Button.Styles>    
+            </Button>    
+            <Button Foreground="White" Background="Red" Content="Удалить сотрудника">
+                <Button.Styles>
+                    <Style Selector=":pointerover /template/ ContentPresenter">
+                        <Setter Property="Background" Value="#EC3C3C"/>
+                    </Style>
+                </Button.Styles>   
+            </Button>    
+        </StackPanel>
+       <StackPanel Grid.Row="2" Background="#1E1E1E">
+           <ScrollViewer>
+               <ListBox ItemsSource="{Binding GettedStaffInGroups}" Background="#1E1E1E">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Border BorderBrush="Orange" BorderThickness="1" CornerRadius="5" Padding="0,20">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding StaffFamily}" Margin="10,0" Foreground="White"/>
+                                    <TextBlock Text="{Binding StaffName}" Margin="10,0" Foreground="White"/>
+                                    <TextBlock Text="{Binding StaffFather}" Margin="10,0" Foreground="White"/>
+                                    <TextBlock Text="{Binding StaffRoleName}" Margin="10,0" Foreground="White"/>
+                                    <TextBlock Text="{Binding StaffOklad}" Margin="10,0" Foreground="White"/>
+                                </StackPanel>
+                            </Border>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+               </ListBox>
+           </ScrollViewer>
+       </StackPanel>
+    </Grid>
+</Window>

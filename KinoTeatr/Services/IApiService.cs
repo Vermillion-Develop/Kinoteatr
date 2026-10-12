@@ -21,5 +21,10 @@ namespace CinemaHub.Services
         Task<List<StatusVideoProduct>> GetStatusVideoAsync();
         Task<List<VidVideoProduct>> GetVidVideoAsync();
         Task<List<AdultVideoProduct>> GetAdultsAsync();
+        Task<List<CinemaGroupDTO>> GetAllGroupsAsync();
+        Task<bool> AddNewGroupAsync(string? name, int? productId);
+        Task<bool> UpdateGroupAsync(string? name, int? productId, int? groupId);
+        Task<List<StaffGroupDTO>> GetStaffGroupDTOsAsync(int? groupId);
+        Task<bool> AddStaffInGroup(int? staffId, int? videoId, int? groupId, int? roleId);
     }
 }

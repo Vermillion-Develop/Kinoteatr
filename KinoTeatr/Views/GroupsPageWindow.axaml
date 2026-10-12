@@ -1,0 +1,140 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:KinoTeatr.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:helpers="clr-namespace:KinoTeatr.ViewModels"
+        mc:Ignorable="d" d:DesignWidth="600" d:DesignHeight="250"
+        x:Class="KinoTeatr.Views.GroupsPageWindow"
+        x:DataType="vm:GroupsPageViewModel"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="KinoTeatr">
+
+    <Design.DataContext>
+        <vm:GroupsPageViewModel/>
+    </Design.DataContext>
+    
+    <Grid RowDefinitions="20*, 80*">
+        <Grid Grid.Row="0" Background="#0E0B12">
+            <StackPanel Orientation="Horizontal">
+            <Image Source="/Assets/Images/camera.png" Width="50" Height="50" Margin="15"/>  
+            <TextBlock FontSize="32" VerticalAlignment="Center">
+                <Run Text="Cinema" Foreground="Orange"/>
+                <Run Text="Production" Foreground="White"/>
+            </TextBlock>
+            </StackPanel>
+            <ComboBox VerticalAlignment="Center" HorizontalAlignment="Right" Background="Orange" HorizontalContentAlignment="Center" Width="150" FontSize=" 16" PlaceholderText="Меню">
+                <ComboBox.Items>
+                    <Button Cursor="Hand" HorizontalAlignment="Stretch" Background="#1E1C18">
+                        <StackPanel Orientation="Horizontal">
+                            <Image VerticalAlignment="Center" Width="25" Height="25" Source="/Assets/Images/group.png" Margin="0,0,10,0"/>
+                            <TextBlock Foreground="#CBCBCB" IsEnabled="False" Text="Съемочная группа" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+                    <Button Cursor="Hand" HorizontalAlignment="Stretch" Background="#1E1C18">
+                        <StackPanel Orientation="Horizontal">
+                            <Image VerticalAlignment="Center" Width="25" Height="25" Source="/Assets/Images/graphic.png" Margin="0,0,10,0"/>
+                            <TextBlock Foreground="Orange" Text="График съемок" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+                    <Button Cursor="Hand" HorizontalAlignment="Stretch" Background="#1E1C18" Command="{x:Static helpers:PublicViewModelMethods.OpenStaffCommand}" CommandParameter="{Binding $parent[Window]}">
+                        <StackPanel Orientation="Horizontal">
+                            <Image VerticalAlignment="Center" Width="25" Height="25" Source="/Assets/Images/person.png" Margin="0,0,10,0"/>
+                            <TextBlock Foreground="Orange" Text="Сотрудники" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+                    <Button Cursor="Hand" HorizontalAlignment="Stretch" Background="#1E1C18">
+                        <StackPanel Orientation="Horizontal">
+                            <Image VerticalAlignment="Center" Width="25" Height="25" Source="/Assets/Images/gps.png" Margin="0,0,10,0"/>
+                            <TextBlock Foreground="Orange" Text="Площадки" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+                    <Button Cursor="Hand" HorizontalAlignment="Stretch" Background="#1E1C18" Command="{x:Static helpers:PublicViewModelMethods.OpenProjectsCommand}" CommandParameter="{Binding $parent[Window]}">
+                        <StackPanel Orientation="Horizontal">
+                            <Image VerticalAlignment="Center" Width="25" Height="25" Source="/Assets/Images/projects.png" Margin="0,0,10,0"/>
+                            <TextBlock Foreground="Orange" Text="Проекты" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+                    <Button Cursor="Hand" HorizontalAlignment="Stretch" Background="#1E1C18">
+                        <StackPanel Orientation="Horizontal">
+                            <Image VerticalAlignment="Center" Width="25" Height="25" Source="/Assets/Images/payment.png" Margin="0,0,10,0"/>
+                            <TextBlock Foreground="Orange" Text="Затраты" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+                    <Button Cursor="Hand" HorizontalAlignment="Stretch" Background="#1E1C18">
+                        <StackPanel Orientation="Horizontal">
+                            <Image VerticalAlignment="Center" Width="25" Height="25" Source="/Assets/Images/procat.png" Margin="0,0,10,0"/>
+                            <TextBlock Foreground="Orange" Text="Прокат" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+                    <Button Cursor="Hand" HorizontalAlignment="Stretch" Background="Red" Command="{x:Static helpers:PublicViewModelMethods.LeaveFromSessionCommand}" CommandParameter="{Binding $parent[Window]}">
+                        <StackPanel Orientation="Horizontal">
+                            <Image VerticalAlignment="Center" Width="25" Height="25" Source="/Assets/Images/enter.png" Margin="0,0,10,0"/>
+                            <TextBlock Foreground="White" Text="Выход" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+                </ComboBox.Items>
+                <ComboBox.Styles>
+                    <Style Selector="ComboBoxItem">
+                        <Setter Property="Padding" Value="0"/>
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                    </Style>
+                 </ComboBox.Styles>
+               <ComboBox.Resources>
+                    <SolidColorBrush x:Key="ComboBoxDropDownBackground" Color="#1E1E1E"/>
+                    <SolidColorBrush x:Key="ComboBoxDropDownBorderBrush" Color="#444444"/>
+        
+                    <Thickness x:Key="ComboBoxDropdownHasPaddingThemeThickness">0</Thickness>
+                    <SolidColorBrush x:Key="ComboBoxTemplatePanelBackground" Color="Transparent"/>
+                </ComboBox.Resources>
+            </ComboBox>
+        </Grid>
+        <Grid Grid.Row="1" Background="#1E1E1E" ColumnDefinitions="50*,50*" RowDefinitions="50*, 50*">
+            <Grid RowDefinitions="20* 80*" Grid.RowSpan="2" Grid.ColumnSpan="3">
+                <StackPanel Grid.Row="0"  Orientation="Horizontal" >
+                    <Button Cursor="Hand" Content="Добавить" Foreground="White" Background="#17A117" VerticalAlignment="Center" Margin="10,0,10,0" Command="{Binding OpenAddGroupFormCommand}" CommandParameter="{Binding $parent[Window]}">
+                        <Button.Styles>
+                            <Style Selector=":pointerover /template/ ContentPresenter">
+                                <Setter Property="Background" Value="#69D669"/>
+                            </Style>
+                        </Button.Styles>
+                    </Button>
+                    <Button Cursor="Hand" Content="Редактировать" Foreground="White" Background="Orange" VerticalAlignment="Center" Margin="0,0,10,0" Command="{Binding UpdateGroupFormCommand}" CommandParameter="{Binding $parent[Window]}">
+                        <Button.Styles>
+                            <Style Selector=":pointerover /template/ ContentPresenter">
+                                <Setter Property="Background" Value="#FFC457"/>
+                            </Style>
+                        </Button.Styles>
+                    </Button>
+                    <Button Cursor="Hand" Content="Подробно" Foreground="White" Background="Orange" VerticalAlignment="Center" Margin="0,0,10,0" Command="{Binding OpenStaffGroupFormCommand}">
+                        <Button.Styles>
+                            <Style Selector=":pointerover /template/ ContentPresenter">
+                                <Setter Property="Background" Value="#FFC457"/>
+                            </Style>
+                        </Button.Styles>
+                    </Button>
+                    <Button Cursor="Hand" Content="Удалить" Foreground="White" Background="Red" VerticalAlignment="Center" Margin="0,0,10,0">
+                        <Button.Styles>
+                            <Style Selector=":pointerover /template/ ContentPresenter">
+                                <Setter Property="Background" Value="#ED4141"/>
+                            </Style>
+                        </Button.Styles>
+                    </Button>
+                    
+                </StackPanel>
+                <ListBox Grid.Row="1" Grid.ColumnSpan="2" SelectedItem="{Binding SelectedGroup}" ItemsSource="{Binding GettedGroups}" Background="#1E1E1E">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Border BorderBrush="Orange" BorderThickness="1" CornerRadius="5" Padding="0,20">
+                                    <StackPanel Orientation="Horizontal" >
+                                        <TextBlock VerticalAlignment="Center" Text="{Binding Name}" Margin="10,0" Foreground="White"/>
+                                        <TextBlock VerticalAlignment="Center" Text="{Binding VideoName}" Margin="10,0" Foreground="White"/>
+                                    </StackPanel>
+                                </Border>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>

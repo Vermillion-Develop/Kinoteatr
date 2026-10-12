@@ -29,6 +29,21 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Views\AddStaffInGroupPageWindow.axaml.cs">
+      <DependentUpon>AddStaffInGroupPageWindow.axaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\StaffInGroupPageWindow.axaml.cs">
+      <DependentUpon>StaffInGroupPageWindow.axaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\UpdateGroupPageWindow.axaml.cs">
+      <DependentUpon>UpdateGroupPageWindow.axaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\AddNewGroupPageWindow.axaml.cs">
+      <DependentUpon>AddNewGroupPageWindow.axaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\GroupsPageWindow.axaml.cs">
+      <DependentUpon>GroupsPageWindow.axaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\UpdateProjectPageWindow.axaml.cs">
       <DependentUpon>UpdateProjectPageWindow.axaml</DependentUpon>
     </Compile>

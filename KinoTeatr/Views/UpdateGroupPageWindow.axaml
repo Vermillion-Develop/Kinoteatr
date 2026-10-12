@@ -1,0 +1,45 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:KinoTeatr.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:helpers="clr-namespace:KinoTeatr.ViewModels"
+        mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="250"
+        x:Class="KinoTeatr.Views.UpdateGroupPageWindow"
+        x:DataType="vm:UpdateGroupViewModel"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="KinoTeatr">
+
+    <!--<Design.DataContext>
+        <vm:UpdateGroupViewModel/>
+    </Design.DataContext> -->
+
+    <Grid RowDefinitions="15*, 85*" Background="#1E1E1E">
+        <TextBlock Grid.Row="0" VerticalAlignment="Center" Grid.ColumnSpan="3" Text="{Binding CinemaGroupDTO.Name}" Foreground="Orange" FontSize="18" HorizontalAlignment="Center"/>
+        <Image VerticalAlignment="Center" HorizontalAlignment="Left" Source="/Assets/Images/projects.png" Width="30" Margin="10,0,0,0"/>
+       <StackPanel Grid.Row="1">
+           <TextBlock Margin="0,0,0,10" Text="Наименование съемочной группы" Foreground="White"/>
+           <TextBox Margin="0,0,0,10" Text="{Binding GroupName}" PlaceholderText="{Binding CinemaGroupDTO.Name}" Foreground="Orange" PlaceholderForeground="White"/>
+           <TextBlock Margin="0,0,0,10" Text="Текущий проект съемочной группы" Foreground="White"/>
+           <ComboBox DisplayMemberBinding="{Binding Name}" HorizontalAlignment="Stretch" ItemsSource="{Binding GettedVideos}" SelectedItem="{Binding SelectedVideo, Mode=TwoWay}" PlaceholderText="{Binding CinemaGroupDTO.VideoName}" PlaceholderForeground="White" Foreground="Orange"/>
+           <TextBlock Text="{Binding ErrorMessage}" Foreground="Red" HorizontalAlignment="Center"/>
+           <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+           <Button Foreground="White" Background="#19EC19" Content="Сохранить" Command="{Binding UpdateGroupCommand}" CommandParameter="{Binding $parent[Window]}">
+               <Button.Styles>
+                   <Style Selector=":pointerover /template/ ContentPresenter">
+                       <Setter Property="Background" Value="#66E966"/>
+                   </Style>
+               </Button.Styles>
+           </Button>
+           <Button Background="Red" Foreground="White" Content="Назад" Command="{x:Static helpers:PublicViewModelMethods.CloseCurrentWindowCommand}" CommandParameter="{Binding $parent[Window]}">
+               <Button.Styles>
+                   <Style Selector=":pointerover /template/ ContentPresenter">
+                       <Setter Property="Background" Value="#E63232"/>
+                   </Style>
+               </Button.Styles>
+           </Button>
+           </StackPanel>
+
+       </StackPanel>
+    </Grid>
+</Window>

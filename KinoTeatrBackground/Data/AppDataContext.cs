@@ -23,6 +23,8 @@ namespace KinoTeatrBackground.Data
         public DbSet<AdultVideoProduct> AdultVideoProducts { get; set; }
         public DbSet<Zatrat> Zatrats{ get; set; }
         public DbSet<TypeZatrat> TypesZatrats{ get; set; }
+        public DbSet<StaffGroup> StaffGroups{ get; set; }
+        public DbSet<CinemaGroup> Groups{ get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -39,6 +41,8 @@ namespace KinoTeatrBackground.Data
             modelBuilder.Entity<AdultVideoProduct>().ToTable("AdultVideoProduct");
             modelBuilder.Entity<Zatrat>().ToTable("Zatrat");
             modelBuilder.Entity<TypeZatrat>().ToTable("TypeZatrat");
+            modelBuilder.Entity<StaffGroup>().ToTable("StaffGroup");
+            modelBuilder.Entity<CinemaGroup>().ToTable("Group");
 
         }
     }
