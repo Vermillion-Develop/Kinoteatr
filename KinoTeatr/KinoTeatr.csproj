@@ -29,8 +29,20 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Views\AddNewProcatPageWindow.axaml.cs">
+      <DependentUpon>AddNewProcatPageWindow.axaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\AddNewAreaPageWindow.axaml.cs">
+      <DependentUpon>AddNewAreaPageWindow.axaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\AddStaffInGroupPageWindow.axaml.cs">
       <DependentUpon>AddStaffInGroupPageWindow.axaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\AreaPageWindow.axaml.cs">
+      <DependentUpon>AreaPageWindow.axaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\ProcatPageWindow.axaml.cs">
+      <DependentUpon>ProcatPageWindow.axaml</DependentUpon>
     </Compile>
     <Compile Update="Views\StaffInGroupPageWindow.axaml.cs">
       <DependentUpon>StaffInGroupPageWindow.axaml</DependentUpon>

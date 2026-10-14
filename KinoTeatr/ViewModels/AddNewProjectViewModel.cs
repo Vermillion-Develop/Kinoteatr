@@ -114,6 +114,11 @@ namespace KinoTeatr.ViewModels
                 ErrorMessage = "Заполните все поля!";
                 return;
             }
+            if(SelectedDateEnd < SelectedDateStart)
+            {
+                ErrorMessage = "Дата окончания не может быть меньше текущей!";
+                return;
+            }
             var result = await _apiService.AddNewProjectAsync(NameProject, Budget, SelectedVidVideo?.Id, SelectedDateStart.Value.ToUniversalTime(), SelectedDateEnd.Value.ToUniversalTime(), SelectedVidVideo?.Id,SelectedAdult?.Id,Idea);
             if (result)
             {

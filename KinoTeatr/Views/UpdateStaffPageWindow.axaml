@@ -15,7 +15,7 @@
     </Design.DataContext>
     <Grid RowDefinitions="15*, 85*" ColumnDefinitions="45*, 5*, 45*" Background="#1E1E1E">
         <TextBlock Grid.Row="0" VerticalAlignment="Center" Grid.ColumnSpan="3" Text="Редактирование сотрудника" Foreground="Orange" FontSize="18" HorizontalAlignment="Center"/>
-        <Image VerticalAlignment="Center" HorizontalAlignment="Left" Source="/Assets/Images/person.png" Width="30" Margin="10,0,0,0"/>
+        <Image VerticalAlignment="Center" HorizontalAlignment="Left" Source="/Assets/Images/group.png" Width="30" Margin="10,0,0,0"/>
        <StackPanel Grid.Row="1">
            <TextBox MaxLength="250" PlaceholderText="{Binding SelectedStaff.Family}" Text="{Binding Family}" Foreground="Orange" Background="#474444" PlaceholderForeground="White" Margin="0,0,0,10"/>
            <TextBox MaxLength="250" PlaceholderText="{Binding SelectedStaff.Name}" Text="{Binding Name}" Foreground="Orange" Background="#474444" PlaceholderForeground="White" Margin="0,0,0,10"/>

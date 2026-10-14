@@ -15,7 +15,7 @@
     </Design.DataContext>
     <Grid RowDefinitions="15*, 10*, 75*"  Background="#0E0B12">
         <TextBlock Grid.Row="0" VerticalAlignment="Center" Grid.ColumnSpan="3" Text="{Binding SelectedGroup.VideoName}" Foreground="Orange" FontSize="18" HorizontalAlignment="Center"/>
-        <Image VerticalAlignment="Center" HorizontalAlignment="Left" Source="/Assets/Images/projects.png" Width="30" Margin="10,0,0,0"/>
+        <Image VerticalAlignment="Center" HorizontalAlignment="Left" Source="/Assets/Images/group.png" Width="30" Margin="10,0,0,0"/>
         <StackPanel Orientation="Horizontal" Grid.Row="1" Background="#1E1E1E">
             <Button Margin="0,0,5,0" Background="#29E729" Foreground="White" Content="Добавить сотрудника" Command="{Binding OpenAddStaffFormCommand}" CommandParameter="{Binding $parent[Window]}">
                 <Button.Styles>
@@ -24,7 +24,7 @@
                     </Style>
                 </Button.Styles>    
             </Button>    
-            <Button Foreground="White" Background="Red" Content="Удалить сотрудника">
+            <Button Foreground="White" Background="Red" Content="Удалить сотрудника" Command="{Binding DeleteStaffCommand}">
                 <Button.Styles>
                     <Style Selector=":pointerover /template/ ContentPresenter">
                         <Setter Property="Background" Value="#EC3C3C"/>
@@ -34,7 +34,7 @@
         </StackPanel>
        <StackPanel Grid.Row="2" Background="#1E1E1E">
            <ScrollViewer>
-               <ListBox ItemsSource="{Binding GettedStaffInGroups}" Background="#1E1E1E">
+               <ListBox ItemsSource="{Binding GettedStaffInGroups}" SelectedItem="{Binding SelectedStaff}" Background="#1E1E1E">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <Border BorderBrush="Orange" BorderThickness="1" CornerRadius="5" Padding="0,20">
@@ -51,5 +51,6 @@
                </ListBox>
            </ScrollViewer>
        </StackPanel>
+        <TextBlock Grid.Row="0" Text="{Binding ErrorMessage}" Foreground="Red" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
     </Grid>
 </Window>

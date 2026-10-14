@@ -17,6 +17,9 @@ namespace KinoTeatr.ViewModels
         public ObservableCollection<CinemaGroupDTO> GettedGroups { get; } = new ObservableCollection<CinemaGroupDTO>();
         [ObservableProperty]
         public CinemaGroupDTO? _selectedGroup;
+        [ObservableProperty]
+        public string? _errorMessage;
+
 
         public GroupsPageViewModel()
         {
@@ -50,6 +53,7 @@ namespace KinoTeatr.ViewModels
                 };
                 if (currentWindow != null)
                 {
+                    ErrorMessage = "";
                     bool dialog = await newGroup.ShowDialog<bool>(currentWindow);
                     if (dialog)
                     {
@@ -70,6 +74,7 @@ namespace KinoTeatr.ViewModels
                 };
                 if (currentWindow != null )
                 {
+                    ErrorMessage = "";
                     bool dialog = await newGroup.ShowDialog<bool>(currentWindow);
                     if (dialog)
                     {
@@ -77,19 +82,25 @@ namespace KinoTeatr.ViewModels
                     }
                 }
             }
+            else
+            {
+                ErrorMessage = "Выберите группу!";
+                return;
+            }
         }
         [RelayCommand]
         public async Task OpenStaffGroupFormAsync()
         {
             if(SelectedGroup == null)
             {
-                Debug.WriteLine("Выберите группу");
+                ErrorMessage = "Выберите группу!";
                 return;
             }
             StaffInGroupPageWindow staffGroup = new StaffInGroupPageWindow()
             {
                 DataContext = new StaffInGroupViewModel(SelectedGroup)
             };
+            ErrorMessage = "";
             staffGroup.Show();
         }
     }

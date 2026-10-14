@@ -15,7 +15,7 @@
     </Design.DataContext>
     <Grid RowDefinitions="15*, 85*"  Background="#1E1E1E">
         <TextBlock Grid.Row="0" VerticalAlignment="Center" Grid.ColumnSpan="3" Text="Добавление съемочной группы" Foreground="Orange" FontSize="18" HorizontalAlignment="Center"/>
-        <Image VerticalAlignment="Center" HorizontalAlignment="Left" Source="/Assets/Images/projects.png" Width="30" Margin="10,0,0,0"/>
+        <Image VerticalAlignment="Center" HorizontalAlignment="Left" Source="/Assets/Images/group.png" Width="30" Margin="10,0,0,0"/>
        <StackPanel Grid.Row="1">
            <TextBlock Text="Название группы:" Foreground="White"/>
            <TextBox Text="{Binding NameGroup}" Foreground="Orange" PlaceholderForeground="White" PlaceholderText="Введите название съемочной группы" Margin="0,0,0,10"/>

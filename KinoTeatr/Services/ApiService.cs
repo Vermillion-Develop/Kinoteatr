@@ -269,12 +269,12 @@ namespace CinemaHub.Services
                 var response = await _httpClient.PostAsJsonAsync("api/StaffGroup/updateGroup", dataRequest);
                 return response.IsSuccessStatusCode;
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 Debug.WriteLine($"{ex.Message}");
                 return false;
             }
-        }   
+        }
 
         public async Task<List<StaffGroupDTO>> GetStaffGroupDTOsAsync(int? groupId)
         {
@@ -296,7 +296,6 @@ namespace CinemaHub.Services
                 return new List<StaffGroupDTO>();
             }
         }
-
         public async Task<bool> AddStaffInGroup(int? staffId, int? videoId, int? groupId, int? roleId)
         {
             try
@@ -308,6 +307,137 @@ namespace CinemaHub.Services
             catch (Exception ex)
             {
                 Debug.WriteLine($"{ex.Message}");
+                return false;
+            }
+        }
+        public async Task<bool> DeleteStaffGroupAsync(int? staffId, int? groupId)
+        {
+            try
+            {
+                NewStaffInGroupRequest dataGroup = new NewStaffInGroupRequest() { StaffId = staffId, GroupId = groupId };
+                var response = await _httpClient.PostAsJsonAsync("api/StaffGroup/deleteStaffGroup", dataGroup);
+                return response.IsSuccessStatusCode;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"{ex.Message}");
+                return false;
+            }
+        }
+
+        public async Task<List<AreaDTO>> GetAreaDTOsAsync()
+        {
+            try
+            {
+                var response = await _httpClient.GetFromJsonAsync<List<AreaDTO>>("api/Area/getAreas");
+                if (response == null)
+                {
+                    return new List<AreaDTO>();
+                }
+                return response;
+            }
+            catch (Exception ex)
+            {
+                return new List<AreaDTO>();
+            }
+        }
+        public async Task<List<StreetDTO>> GetStreetsAsync()
+        {
+            try
+            {
+                var response = await _httpClient.GetFromJsonAsync<List<StreetDTO>>("api/Area/getStreets");
+                if (response == null)
+                {
+                    return new List<StreetDTO>();
+                }
+                return response;
+            }
+            catch (Exception ex)
+            {
+                return new List<StreetDTO>();
+            }
+        }
+
+        public async Task<List<TypeArea>> GetTypesAreaAsync()
+        {
+            try
+            {
+                var response = await _httpClient.GetFromJsonAsync<List<TypeArea>>("api/Area/getTypes");
+                if (response == null)
+                {
+                    return new List<TypeArea>();
+                }
+                return response;
+            }
+            catch (Exception ex)
+            {
+                return new List<TypeArea>();
+            }
+        }
+
+        public async Task<bool> AddNewArea(int? typeId, string? adress, int? streetId, decimal? dayCost, int? capacity)
+        {
+            try
+            {
+                NewAreaRequest dataArea = new NewAreaRequest() { TypeAreaId = typeId, Adress = adress, StreetId = streetId, DayCost = dayCost, Capacity = capacity };
+                var response = await _httpClient.PostAsJsonAsync("api/Area/addArea", dataArea);
+                return response.IsSuccessStatusCode;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        public async Task<List<VideoProductInCinemasDTO>> GetVideoCinemasAsync()
+        {
+            try
+            {
+                var response = await _httpClient.GetFromJsonAsync<List<VideoProductInCinemasDTO>>("api/Procat/getVideoCinemas");
+                if (response == null)
+                {
+                    Debug.WriteLine("Массив полученных фильмов был пуст!");
+                    return new List<VideoProductInCinemasDTO>();
+                }
+                return response;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("Ошибка при получении видео в кинотеатрах" + ex.Message);
+                return new List<VideoProductInCinemasDTO>();
+            }
+        }
+
+        public async Task<List<Cinema>> GetCinemasAsync()
+        {
+            try
+            {
+                var respose = await _httpClient.GetFromJsonAsync<List<Cinema>>("api/Procat/getCinemas");
+                if (respose == null)
+                {
+                    Debug.WriteLine("Массив кинотеатров был пуст!");
+                    return new List<Cinema>();
+                }
+                return respose;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"{ex.Message}");
+                return new List<Cinema>();
+            }
+        }
+
+        public async Task<bool> AddNewProcatAsync(int? videoId, int? cinemaId, decimal? revenue, decimal? rating)
+        {
+            try
+            {
+                NewProcatRequest dataRequest = new NewProcatRequest() {VideoProductId = videoId, CinemaId = cinemaId, Rating = rating, Revenue = revenue };
+                var response = await _httpClient.PostAsJsonAsync("api/Procat/addNewProcat", dataRequest);
+                return response.IsSuccessStatusCode;
+            }
+            catch(Exception ex)
+            {
+                Debug.Write("Ошибка при добавлении проката!" + ex.Message);
                 return false;
             }
         }

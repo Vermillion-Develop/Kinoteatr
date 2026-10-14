@@ -80,7 +80,6 @@ namespace KinoTeatr.ViewModels
             }
 
             ErrorMessage = "Ошибка при добавлении сотрудника";
-            Debug.WriteLine(ErrorMessage);
             return;
         }
     }

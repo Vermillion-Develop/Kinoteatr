@@ -19,6 +19,8 @@ namespace KinoTeatr.ViewModels
         public static ICommand CloseCurrentWindowCommand { get; } = new AsyncRelayCommand<Window>(CloseCurrentWindow);
         public static ICommand OpenProjectsCommand { get; } = new AsyncRelayCommand<Window>(OpenProjects);
         public static ICommand OpenStaffGroupCommand { get; } = new AsyncRelayCommand<Window>(OpenStaffGroup);
+        public static ICommand OpenAreasCommand { get; } = new AsyncRelayCommand<Window>(OpenAreas);
+        public static ICommand OpenProcatCommand { get; } = new AsyncRelayCommand<Window>(OpenProcat);
   
 
         public static async Task OpenStaff(Window? currentWindow)
@@ -28,6 +30,15 @@ namespace KinoTeatr.ViewModels
                 DataContext = new StaffPageViewModel()
             };
             staffWin.Show();
+            currentWindow?.Hide();
+        }
+        public static async Task OpenProcat(Window? currentWindow)
+        {
+            ProcatPageWindow procatWin = new ProcatPageWindow
+            {
+                DataContext = new ProcatPageViewModel()
+            };
+            procatWin.Show();
             currentWindow?.Hide();
         }
         public static async Task OpenStaffGroup(Window? currentWindow)
@@ -58,6 +69,15 @@ namespace KinoTeatr.ViewModels
                 DataContext = new ProjectPageViewModel()
             };
             projectsWin.Show();
+            currentWindow?.Hide();
+        }
+        public static async Task OpenAreas(Window? currentWindow)
+        {
+            AreaPageWindow areaWin = new AreaPageWindow()
+            {
+                DataContext = new AreaPageViewModel()
+            };
+            areaWin.Show();
             currentWindow?.Hide();
         }
 

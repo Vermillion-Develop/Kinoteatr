@@ -178,5 +178,30 @@ namespace KinoTeatrBackground.Controllers
                 return StatusCode(500, new { message = "Ошибка добавления сотрудника в группу" + ex.Message });
             }
         }
+
+        [HttpPost("deleteStaffGroup")]
+        public async Task<IActionResult> DeleteStaffGroup([FromBody] NewStaffInGroupRequest request)
+        {
+            using var transaction = await _context.Database.BeginTransactionAsync();
+            try
+            {
+                StaffGroup? staffGroup = await (from sg in _context.StaffGroups where sg.StaffId == request.StaffId && sg.GroupId == request.GroupId select sg).FirstOrDefaultAsync();
+
+                if (staffGroup == null) 
+                {
+                    return BadRequest();
+                }
+               _context.StaffGroups.Remove(staffGroup);
+               await _context.SaveChangesAsync();
+               await transaction.CommitAsync();
+
+                return Ok(new { message = "Удаление прошло успешно" });
+            }
+            catch (Exception ex)
+            {
+                await transaction.RollbackAsync();
+                return StatusCode(500, new { message = "Ошибка добавления сотрудника в группу" + ex.Message });
+            }
+        }
     }
 }

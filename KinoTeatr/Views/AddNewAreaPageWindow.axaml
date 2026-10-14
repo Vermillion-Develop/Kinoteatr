@@ -1,0 +1,51 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:KinoTeatr.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:helpers="clr-namespace:KinoTeatr.ViewModels"
+        mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="450"
+        x:Class="KinoTeatr.Views.AddNewAreaPageWindow"
+        x:DataType="vm:AddNewAreaPageViewModel"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="KinoTeatr">
+
+    <Design.DataContext>
+        <vm:AddNewAreaPageViewModel/>
+    </Design.DataContext>
+    <Grid RowDefinitions="15*, 85*"  Background="#1E1E1E">
+        <TextBlock Grid.Row="0" VerticalAlignment="Center" Grid.ColumnSpan="3" Text="Добавление площадки" Foreground="Orange" FontSize="18" HorizontalAlignment="Center"/>
+        <Image VerticalAlignment="Center" HorizontalAlignment="Left" Source="/Assets/Images/group.png" Width="30" Margin="10,0,0,0"/>
+       <StackPanel Grid.Row="1">
+           <TextBlock Text="Тип площадки:" Foreground="White"/>
+           <ComboBox DisplayMemberBinding="{Binding Name}" ItemsSource="{Binding GettedTypes}" SelectedItem="{Binding SelectedType}"  Foreground="Orange" PlaceholderForeground="White" PlaceholderText="Выберите тип площадки"  HorizontalAlignment="Stretch"/>
+           <TextBlock Text="Улица" Foreground="White"/>
+           <ComboBox ItemsSource="{Binding GettedStreets}" DisplayMemberBinding="{Binding FullName}" SelectedItem="{Binding SelectedStreet}"  Foreground="Orange" PlaceholderForeground="White" PlaceholderText="Выберите улицу"  HorizontalAlignment="Stretch"/>
+           <TextBlock Text="Адрес:" Foreground="White"/>
+           <TextBox MaxLength="250" Text="{Binding AdressArea}" Foreground="Orange" PlaceholderForeground="White" PlaceholderText="Введите адрес" Margin="0,0,0,10"/>
+           <TextBlock Text="Аренда в день:" Foreground="White"/>
+           <NumericUpDown Value="{Binding Cost}" Foreground="Orange" Minimum="0.01" FormatString="0.00" Increment="0.01"/>
+           <TextBlock Text="Вместимость:" Foreground="White"/>
+           <NumericUpDown Value="{Binding Capacity}" Foreground="Orange" Minimum="1" FormatString="0" Increment="1"/>
+           <TextBlock Foreground="Red" Text="{Binding ErrorMessage}" HorizontalAlignment="Center"/>
+
+           <StackPanel HorizontalAlignment="Right" Orientation="Horizontal"> 
+               <Button Margin="0,0,5,0" Foreground="White" Background="#2DED2D" Content="Добавить" Command="{Binding AddAreaCommand}" CommandParameter="{Binding $parent[Window]}">
+                   <Button.Styles>
+                       <Style Selector=":pointerover /template/ ContentPresenter">
+                           <Setter Property="Background" Value="#6CF26C"/>
+                       </Style>
+                   </Button.Styles>
+               </Button>
+
+               <Button Foreground="White" Background="Red" Content="Назад" Command="{x:Static helpers:PublicViewModelMethods.CloseCurrentWindowCommand}" CommandParameter="{Binding $parent[Window]}">
+                   <Button.Styles>
+                       <Style Selector=":pointerover /template/ ContentPresenter">
+                           <Setter Property="Background" Value="#E04848"/>
+                       </Style>
+                   </Button.Styles>
+               </Button>
+           </StackPanel>
+       </StackPanel>
+    </Grid>
+</Window>

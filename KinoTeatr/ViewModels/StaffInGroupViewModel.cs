@@ -4,6 +4,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using KinoTeatr.Views;
 using KinoTeatrShared.Models;
+using KinoTeatrShared.ModelsDTO;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Threading.Tasks;
@@ -16,6 +17,11 @@ namespace KinoTeatr.ViewModels
         public ObservableCollection<StaffGroupDTO> GettedStaffInGroups { get; } = new ObservableCollection<StaffGroupDTO>();
         [ObservableProperty]
         public CinemaGroupDTO _selectedGroup;
+        [ObservableProperty]
+        public string? _errorMessage;
+
+        [ObservableProperty]
+        public StaffGroupDTO? _selectedStaff;
         public StaffInGroupViewModel(CinemaGroupDTO group)
         {
             SelectedGroup = group;
@@ -56,8 +62,20 @@ namespace KinoTeatr.ViewModels
             }
         }
 
-        
-
-
+        [RelayCommand]
+        public async Task DeleteStaffAsync()
+        {
+            if (SelectedStaff != null && SelectedGroup != null)
+            {
+                var result =  await _apiService.DeleteStaffGroupAsync(SelectedStaff.StaffId, SelectedGroup.Id);
+                await GetStaffGroupsAsync();
+                ErrorMessage = "";
+            }
+            else
+            {
+                ErrorMessage = "Ошибка удаления сотрудника";
+                return;
+            }
+        }
     }
 }

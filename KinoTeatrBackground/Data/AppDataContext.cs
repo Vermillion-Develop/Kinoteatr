@@ -25,6 +25,12 @@ namespace KinoTeatrBackground.Data
         public DbSet<TypeZatrat> TypesZatrats{ get; set; }
         public DbSet<StaffGroup> StaffGroups{ get; set; }
         public DbSet<CinemaGroup> Groups{ get; set; }
+        public DbSet<Area> Areas{ get; set; }
+        public DbSet<TypeArea> TypeAreas { get; set; }
+        public DbSet<Town> Towns { get; set; }
+        public DbSet<Street> Streets { get; set; }
+        public DbSet<Cinema> Cinemas { get; set; }
+        public DbSet<VideoProductInCinemas> VideoInCinemas { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -43,6 +49,14 @@ namespace KinoTeatrBackground.Data
             modelBuilder.Entity<TypeZatrat>().ToTable("TypeZatrat");
             modelBuilder.Entity<StaffGroup>().ToTable("StaffGroup");
             modelBuilder.Entity<CinemaGroup>().ToTable("Group");
+
+            modelBuilder.Entity<Area>().ToTable("Area");
+            modelBuilder.Entity<TypeArea>().ToTable("TypeArea");
+            modelBuilder.Entity<Town>().ToTable("Town");
+            modelBuilder.Entity<Street>().ToTable("Street");
+
+            modelBuilder.Entity<Cinema>().ToTable("Cinema");
+            modelBuilder.Entity<VideoProductInCinemas>().ToTable("VideoProductInCinemas");
 
         }
     }

@@ -26,5 +26,13 @@ namespace CinemaHub.Services
         Task<bool> UpdateGroupAsync(string? name, int? productId, int? groupId);
         Task<List<StaffGroupDTO>> GetStaffGroupDTOsAsync(int? groupId);
         Task<bool> AddStaffInGroup(int? staffId, int? videoId, int? groupId, int? roleId);
+        Task<bool> DeleteStaffGroupAsync(int? staffId, int? groupId);
+        Task<List<AreaDTO>> GetAreaDTOsAsync();
+        Task<List<StreetDTO>> GetStreetsAsync();
+        Task<List<TypeArea>> GetTypesAreaAsync();
+        Task<bool> AddNewArea(int? typeId, string? adress, int? streetId, decimal? dayCost, int? capacity);
+        Task<List<VideoProductInCinemasDTO>> GetVideoCinemasAsync();
+        Task<List<Cinema>> GetCinemasAsync();
+        Task<bool> AddNewProcatAsync(int? videoId, int? cinemaId, decimal? revenue, decimal? rating);
     }
 }

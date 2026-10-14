@@ -19,6 +19,8 @@ namespace KinoTeatr.ViewModels
 
         [ObservableProperty]
         public StaffDTO? _selectedStaff;
+        [ObservableProperty]
+        public string? _errorMessage;
 
         [ObservableProperty]
         public Specialization? _selectedRole;
@@ -36,6 +38,7 @@ namespace KinoTeatr.ViewModels
         {
             if (SelectedRole == null || SelectedStaff == null) 
             {
+                ErrorMessage = "Выберите сотрудника и должность!";
                 return;
             }
             var result = await _apiService.AddStaffInGroup(SelectedStaff.Id, _selectedGroup.VideoId, _selectedGroup.Id, SelectedRole.Id);
@@ -45,7 +48,7 @@ namespace KinoTeatr.ViewModels
             }
             else
             {
-                Debug.WriteLine("Ошибка");
+                ErrorMessage = "Ошибка добавления";
             }
         }
 
