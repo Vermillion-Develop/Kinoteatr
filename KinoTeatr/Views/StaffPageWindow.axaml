@@ -54,13 +54,13 @@
                             <TextBlock Foreground="Orange" Text="Проекты" VerticalAlignment="Center"/>
                         </StackPanel>
                     </Button>
-                    <Button Cursor="Hand" HorizontalAlignment="Stretch" Background="#1E1C18">
+                    <Button Cursor="Hand" HorizontalAlignment="Stretch" Background="#1E1C18" Command="{x:Static helpers:PublicViewModelMethods.OpenZatratCommand}" CommandParameter="{Binding $parent[Window]}">
                         <StackPanel Orientation="Horizontal">
                             <Image VerticalAlignment="Center" Width="25" Height="25" Source="/Assets/Images/payment.png" Margin="0,0,10,0"/>
                             <TextBlock Foreground="Orange" Text="Затраты" VerticalAlignment="Center"/>
                         </StackPanel>
                     </Button>
-                    <Button Cursor="Hand" HorizontalAlignment="Stretch" Background="#1E1C18">
+                    <Button Cursor="Hand" HorizontalAlignment="Stretch" Background="#1E1C18" Command="{x:Static helpers:PublicViewModelMethods.OpenProcatCommand}" CommandParameter="{Binding $parent[Window]}">
                         <StackPanel Orientation="Horizontal">
                             <Image VerticalAlignment="Center" Width="25" Height="25" Source="/Assets/Images/procat.png" Margin="0,0,10,0"/>
                             <TextBlock Foreground="Orange" Text="Прокат" VerticalAlignment="Center"/>

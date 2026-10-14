@@ -441,5 +441,53 @@ namespace CinemaHub.Services
                 return false;
             }
         }
+
+        public async Task<List<TypeZatrat>> GetTypesZatratAsync()
+        {
+            try
+            {
+                var response = await _httpClient.GetFromJsonAsync<List<TypeZatrat>>("api/Zatrat/getTypesZatrat");
+                if(response == null)
+                {
+                    return new List<TypeZatrat>();
+                }
+                return response;
+            }
+            catch(Exception ex)
+            {
+                return new List<TypeZatrat>();
+            }
+        }
+
+        public async Task<List<ZatratDTO>> GetZatratAsync()
+        {
+            try
+            {
+                var response = await _httpClient.GetFromJsonAsync<List<ZatratDTO>>("api/Zatrat/getZatrats");
+                if (response == null)
+                {
+                    return new List<ZatratDTO>();
+                }
+                return response;
+            }
+            catch (Exception ex)
+            {
+                return new List<ZatratDTO>();
+            }
+        }
+
+        public async Task<bool> AddNewZatratAsync(int? type, decimal? cost, DateTimeOffset? date, int? videoId)
+        {
+            try
+            {
+                NewZatratRequest dataRequset = new NewZatratRequest() { TypeZatratId = type, Cost = cost, Date = date, VideoProductId = videoId };
+                var response = await _httpClient.PostAsJsonAsync("api/Zatrat/addZatrat", dataRequset);
+                return response.IsSuccessStatusCode;
+            }
+            catch(Exception ex)
+            {
+                return false;
+            }
+        }
     }
 }

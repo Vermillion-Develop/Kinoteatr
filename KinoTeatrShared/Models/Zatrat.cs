@@ -9,7 +9,7 @@ namespace KinoTeatrShared.Models
         public int Id { get; set; }
         public int? TypeZatratId { get; set; }
         public decimal? Cost { get; set; }
-        public DateTime? Date { get; set; }
+        public DateTimeOffset? Date { get; set; }
         public int? VideoProductId { get; set; }
     }
 }

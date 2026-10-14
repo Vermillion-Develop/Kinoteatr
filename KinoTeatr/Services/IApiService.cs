@@ -34,5 +34,8 @@ namespace CinemaHub.Services
         Task<List<VideoProductInCinemasDTO>> GetVideoCinemasAsync();
         Task<List<Cinema>> GetCinemasAsync();
         Task<bool> AddNewProcatAsync(int? videoId, int? cinemaId, decimal? revenue, decimal? rating);
+        Task<List<TypeZatrat>> GetTypesZatratAsync();
+        Task<List<ZatratDTO>> GetZatratAsync();
+        Task<bool> AddNewZatratAsync(int? type, decimal? cost, DateTimeOffset? date, int? videoId);
     }
 }

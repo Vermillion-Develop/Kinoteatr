@@ -1,0 +1,43 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:KinoTeatr.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:helpers="clr-namespace:KinoTeatr.ViewModels"
+        mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="250"
+        x:Class="KinoTeatr.Views.AddNewZatratPageWindow"
+        x:DataType="vm:AddNewZatratViewModel"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="KinoTeatr">
+
+    <Design.DataContext>
+        <vm:AddNewZatratViewModel/>
+    </Design.DataContext>
+    <Grid RowDefinitions="15*, 85*"  Background="#1E1E1E">
+        <TextBlock Grid.Row="0" VerticalAlignment="Center" Grid.ColumnSpan="3" Text="Добавление новых трат" Foreground="Orange" FontSize="18" HorizontalAlignment="Center"/>
+        <Image VerticalAlignment="Center" HorizontalAlignment="Left" Source="/Assets/Images/group.png" Width="30" Margin="10,0,0,0"/>
+       <StackPanel Grid.Row="1">
+           <ComboBox Foreground="Orange" ItemsSource="{Binding GettedProducts}" DisplayMemberBinding="{Binding Name}" SelectedItem="{Binding SelectedVideo, Mode=TwoWay}" PlaceholderForeground="White" PlaceholderText="Выберите проект" Text="Выбранный проект" HorizontalAlignment="Stretch"/>
+           <ComboBox Foreground="Orange" ItemsSource="{Binding GettedTypeZatrat}" DisplayMemberBinding="{Binding Name}" SelectedItem="{Binding SelectedType, Mode=TwoWay}" PlaceholderForeground="White" PlaceholderText="Выберите тип затраты" Text="Выбранный проект" HorizontalAlignment="Stretch"/>
+           <NumericUpDown Foreground="Orange" Value="{Binding SelectedCost, Mode=TwoWay}" Minimum="0.01" FormatString="0.00" Increment="0.01" PlaceholderText="Введите затраты"/>
+           <DatePicker Foreground="Orange" SelectedDate="{Binding SelectedDate, Mode=TwoWay}" HorizontalAlignment="Stretch"/>
+           <TextBlock Foreground="Red" Text="{Binding ErrorMessage}" HorizontalAlignment="Center"/>
+           <StackPanel HorizontalAlignment="Right" Orientation="Horizontal"> 
+               <Button Margin="0,0,5,0" Foreground="White" Background="#2DED2D" Content="Добавить" Command="{Binding AddNewZatratCommand}" CommandParameter="{Binding $parent[Window]}">
+                   <Button.Styles>
+                       <Style Selector=":pointerover /template/ ContentPresenter">
+                           <Setter Property="Background" Value="#6CF26C"/>
+                       </Style>
+                   </Button.Styles>
+               </Button>
+               <Button Foreground="White" Background="Red" Content="Назад" Command="{x:Static helpers:PublicViewModelMethods.CloseCurrentWindowCommand}" CommandParameter="{Binding $parent[Window]}">
+                   <Button.Styles>
+                       <Style Selector=":pointerover /template/ ContentPresenter">
+                           <Setter Property="Background" Value="#E04848"/>
+                       </Style>
+                   </Button.Styles>
+               </Button>
+           </StackPanel>
+       </StackPanel>
+    </Grid>
+</Window>

@@ -29,6 +29,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Views\AddNewZatratPageWindow.axaml.cs">
+      <DependentUpon>AddNewZatratPageWindow.axaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\AddNewProcatPageWindow.axaml.cs">
       <DependentUpon>AddNewProcatPageWindow.axaml</DependentUpon>
     </Compile>
@@ -43,6 +46,9 @@
     </Compile>
     <Compile Update="Views\ProcatPageWindow.axaml.cs">
       <DependentUpon>ProcatPageWindow.axaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\ZatratsPageWindow.axaml.cs">
+      <DependentUpon>ZatratsPageWindow.axaml</DependentUpon>
     </Compile>
     <Compile Update="Views\StaffInGroupPageWindow.axaml.cs">
       <DependentUpon>StaffInGroupPageWindow.axaml</DependentUpon>
