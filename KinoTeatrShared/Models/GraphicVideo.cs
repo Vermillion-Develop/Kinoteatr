@@ -11,7 +11,7 @@ namespace KinoTeatrShared.Models
         public int? VideoProductId { get; set; }
         public int? AreaId { get; set; }
         public int? SceneId { get; set; }
-        public DateOnly? Date { get; set; }
+        public DateTimeOffset? Date { get; set; }
         public TimeSpan? Time { get; set; }
     }
 }

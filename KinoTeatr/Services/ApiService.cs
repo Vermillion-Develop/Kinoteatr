@@ -489,5 +489,22 @@ namespace CinemaHub.Services
                 return false;
             }
         }
+        public async Task<List<GraphicVideoDTO>?> GetGraphicVideosDTOAsync()
+        {
+            try
+            {
+                var response = await _httpClient.GetFromJsonAsync<List<GraphicVideoDTO>>("api/Graphic/getGraphic");
+                if(response == null)
+                {
+                    return new List<GraphicVideoDTO>();
+                }
+                return response;
+            }
+            catch( Exception ex)
+            {
+                Debug.WriteLine(ex);
+                return new List<GraphicVideoDTO>();
+            }
+        }
     }
 }

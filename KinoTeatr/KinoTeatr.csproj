@@ -47,6 +47,9 @@
     <Compile Update="Views\ProcatPageWindow.axaml.cs">
       <DependentUpon>ProcatPageWindow.axaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\GraphicGroupPageWindow.axaml.cs">
+      <DependentUpon>GraphicGroupPageWindow.axaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\ZatratsPageWindow.axaml.cs">
       <DependentUpon>ZatratsPageWindow.axaml</DependentUpon>
     </Compile>

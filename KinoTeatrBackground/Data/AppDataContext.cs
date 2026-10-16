@@ -31,6 +31,8 @@ namespace KinoTeatrBackground.Data
         public DbSet<Street> Streets { get; set; }
         public DbSet<Cinema> Cinemas { get; set; }
         public DbSet<VideoProductInCinemas> VideoInCinemas { get; set; }
+        public DbSet<GraphicVideo> GraphicVideos { get; set; }
+        public DbSet<Scene> Scenes { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -57,6 +59,9 @@ namespace KinoTeatrBackground.Data
 
             modelBuilder.Entity<Cinema>().ToTable("Cinema");
             modelBuilder.Entity<VideoProductInCinemas>().ToTable("VideoProductInCinemas");
+
+            modelBuilder.Entity<GraphicVideo>().ToTable("GraphicVideo");
+            modelBuilder.Entity<Scene>().ToTable("Scene");
 
         }
     }
