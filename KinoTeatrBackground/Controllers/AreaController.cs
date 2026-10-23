@@ -43,7 +43,8 @@ namespace KinoTeatrBackground.Controllers
                                         Capacity = a.Capacity,
 
                                         TypeAreaName = t.Name,
-                                        StreetName = s.Name
+                                        StreetName = s.Name,
+                                        TownName = c.Name
                                     }).ToListAsync();
                 return Ok(result);
             }

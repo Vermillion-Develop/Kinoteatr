@@ -506,5 +506,37 @@ namespace CinemaHub.Services
                 return new List<GraphicVideoDTO>();
             }
         }
+
+        public async Task<List<Scene>> GetScenesAsync() 
+        {
+            try
+            {
+                var response = await _httpClient.GetFromJsonAsync<List<Scene>>("api/Graphic/getScenes");
+                if (response == null)
+                {
+                    return new List<Scene>();
+                }
+                return response;
+            }
+            catch( Exception ex)
+            {
+                return new List<Scene>();
+            }
+        }
+
+        public async Task<bool> AddNewGraphAsync(int? staffId, int? videoId, int? areaId, int? sceneId, DateTimeOffset? date, TimeSpan? time)
+        {
+            try
+            {
+                NewGraphicRequest dataRequest = new NewGraphicRequest() {StaffGroupId = staffId, VideoProductId = videoId, AreaId = areaId, SceneId = sceneId, Date = date, Time = time };
+                var response = await _httpClient.PostAsJsonAsync("api/Graphic/addGraphic", dataRequest);
+                return response.IsSuccessStatusCode;
+            }
+            catch(Exception ex)
+            {
+                Debug.WriteLine("Ошибка добавления");
+                return false;
+            }
+        }
     }
 }

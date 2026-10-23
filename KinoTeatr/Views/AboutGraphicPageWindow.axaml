@@ -1,0 +1,45 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:KinoTeatr.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:helpers="clr-namespace:KinoTeatr.ViewModels"
+        mc:Ignorable="d" d:DesignWidth="600" d:DesignHeight="250"
+        x:Class="KinoTeatr.Views.AboutGraphicPageWindow"
+        x:DataType="vm:AboutGraphicViewModel"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="KinoTeatr">
+
+    <Design.DataContext>
+        <vm:AboutGraphicViewModel/>
+    </Design.DataContext>
+
+    <Grid RowDefinitions="15*, 85*" ColumnDefinitions="45*, 5*, 45*" Background="#1E1E1E">
+        <TextBlock Grid.Row="0" VerticalAlignment="Center" Grid.ColumnSpan="3" Text="Подробности записи" Foreground="Orange" FontSize="18" HorizontalAlignment="Center"/>
+        <Image VerticalAlignment="Center" HorizontalAlignment="Left" Source="/Assets/Images/projects.png" Width="30" Margin="10,0,0,0"/>
+       <StackPanel Grid.Row="1">
+           <TextBlock Text="Название группы:" Foreground="White"/>
+           <TextBlock Text="{Binding GraphicVideo.StaffName}" Foreground="Orange" Background="#474444" Margin="0,0,0,10"/>
+           <TextBlock Text="Название продукта:" Foreground="White"/>
+           <TextBlock Text="{Binding GraphicVideo.VideoName}" Foreground="Orange" Background="#474444" Margin="0,0,0,10"/>
+           <TextBlock Text="Площадка съемки:" Foreground="White"/>
+           <TextBlock Text="{Binding GraphicVideo.AreaName}" Foreground="Orange" Background="#474444" Margin="0,0,0,10"/>
+           <TextBlock Text="Сцена:" Foreground="White"/>
+           <TextBlock Text="{Binding GraphicVideo.SceneName}" Foreground="Orange" Background="#474444" Margin="0,0,0,10"/>
+       </StackPanel>
+       <StackPanel Grid.Row="1" Grid.Column="2">
+           <TextBlock Text="Улица:" Foreground="White"/>
+           <TextBlock Text="{Binding GraphicVideo.StreetName}" Foreground="Orange" Background="#474444" Margin="0,0,0,10"/>
+           <TextBlock Text="Город:" Foreground="White"/>
+           <TextBlock Text="{Binding GraphicVideo.TownName}" Foreground="Orange" Background="#474444" Margin="0,0,0,10"/>
+           <TextBlock Text="Дата съемок:" Foreground="White"/>
+           <TextBlock Text="{Binding GraphicVideo.Date, StringFormat={}{0:dd.MM.yyyy}}" Foreground="Orange" Background="#474444" Margin="0,0,0,10"/>
+           <TextBlock Text="Время:" Foreground="White"/>
+           <TextBlock Text="{Binding GraphicVideo.Time}" Foreground="Orange" Background="#474444" Margin="0,0,0,10"/>
+           <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button Content="Назад" Foreground="White" Background="Red" Margin="10,0,0,0" Cursor="Hand" Command="{x:Static helpers:PublicViewModelMethods.CloseCurrentWindowCommand}" CommandParameter="{Binding $parent[Window]}"/>
+            </StackPanel>
+       </StackPanel>
+        
+    </Grid>
+</Window>

@@ -57,7 +57,51 @@ namespace KinoTeatrBackground.Controllers
             {
                 return BadRequest(ex.Message);
             }
-        }  
+        }
+
+        [HttpGet("getScenes")]
+        public async Task<ActionResult<IEnumerable<Scene>>> GetAllScenes()
+        {
+            try
+            {
+                var sceneList = await (from s in _context.Scenes select s).ToListAsync();
+                return Ok(sceneList);
+            }
+            catch(Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpPost("addGraphic")]
+        public async Task<IActionResult> AddNewGraphic([FromBody] NewGraphicRequest request)
+        {
+            using var  transaction = await _context.Database.BeginTransactionAsync();
+            try
+            {
+                GraphicVideo graph = new GraphicVideo()
+                {
+                    StaffGroupId = request.StaffGroupId,
+                    VideoProductId = request.VideoProductId,
+                    AreaId = request.AreaId,
+                    SceneId = request.SceneId,
+                    Date = request.Date,
+                    Time = request.Time
+                };
+
+                _context.Add(graph);
+                await _context.SaveChangesAsync();
+                await transaction.CommitAsync();
+                return StatusCode(200);
+            }
+            catch(Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+                await transaction.RollbackAsync();
+                return StatusCode(500);
+            }
+        }
+
 
     }
 }

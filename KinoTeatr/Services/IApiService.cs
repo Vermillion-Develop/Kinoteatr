@@ -37,6 +37,8 @@ namespace CinemaHub.Services
         Task<List<TypeZatrat>> GetTypesZatratAsync();
         Task<List<ZatratDTO>> GetZatratAsync();
         Task<List<GraphicVideoDTO>?> GetGraphicVideosDTOAsync();
+        Task<List<Scene>> GetScenesAsync();
         Task<bool> AddNewZatratAsync(int? type, decimal? cost, DateTimeOffset? date, int? videoId);
+        Task<bool> AddNewGraphAsync(int? staffId, int? videoId, int? areaId, int? sceneId, DateTimeOffset? date, TimeSpan? time);
     }
 }

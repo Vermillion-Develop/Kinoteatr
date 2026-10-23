@@ -29,6 +29,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Views\AboutGraphicPageWindow.axaml.cs">
+      <DependentUpon>AboutGraphicPageWindow.axaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\AddNewGraphicPageWindow.axaml.cs">
+      <DependentUpon>AddNewGraphicPageWindow.axaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\AddNewZatratPageWindow.axaml.cs">
       <DependentUpon>AddNewZatratPageWindow.axaml</DependentUpon>
     </Compile>

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Xml.Linq;
 
 namespace KinoTeatrShared.Models
 {
@@ -15,5 +16,7 @@ namespace KinoTeatrShared.Models
 
         public string? TypeAreaName { get; set; }
         public string? StreetName { get; set; }
+        public string? TownName { get; set; }
+        public string? FullName => $"{TownName} {StreetName} {Adress}";
     }
 }
