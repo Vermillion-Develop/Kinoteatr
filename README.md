@@ -8,6 +8,10 @@
 <img width="2542" height="1324" alt="Untitled2" src="https://github.com/user-attachments/assets/a77d5891-21ca-42b1-80ab-fb380afcd552" />
 
 ### Интерфейс приложения (Avalonia UI)
+<img width="1424" height="739" alt="image" src="https://github.com/user-attachments/assets/86244adc-5641-459d-b9f5-af333afd8c38" />
+<img width="1423" height="739" alt="image" src="https://github.com/user-attachments/assets/18f32ece-4628-47f8-8e72-18068c8cfab7" />
+<img width="1424" height="739" alt="image" src="https://github.com/user-attachments/assets/fa29ab46-0b01-4bc4-8d47-3ec9a6e9a865" />
+
 
 
 
